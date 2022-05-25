@@ -6,10 +6,10 @@ import java.util.Map;
 public abstract class Menu {
 
     private static String CLEAR;
-    private boolean running;
+    protected boolean running;
     protected String title;
 
-    private Map<String, MenuAction> actions;
+    protected Map<String, MenuAction> actions;
 
     public Menu(String title) {
         this.title = title;
@@ -28,7 +28,7 @@ public abstract class Menu {
         });
     }
 
-    private void addOption(String choiceInput, MenuAction callback){
+    public void addOption(String choiceInput, MenuAction callback){
         this.actions.put(choiceInput, callback);
     }
 
@@ -38,7 +38,7 @@ public abstract class Menu {
         }
     }
 
-    private void clearActions() {
+    protected void clearActions() {
         this.actions.clear();
     }
 
