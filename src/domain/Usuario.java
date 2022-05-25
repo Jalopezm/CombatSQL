@@ -1,28 +1,18 @@
 package domain;
 
 public class Usuario {
-    private int idUsuario;
     private String nombre;
     private String apellido;
     private String nombreUsuario;
     private String email;
     private String contraseña;
 
-    public Usuario(int idUsuario, String nombre, String apellido, String nombreUsuario, String email, String contraseña) {
-        this.idUsuario = idUsuario;
+    public Usuario(String nombre, String apellido, String nombreUsuario, String email, String contraseña) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.contraseña = contraseña;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {

@@ -89,7 +89,7 @@ public abstract class Menu {
 
     private void printTitle() {
         System.out.println("*****************************************");
-        System.out.println("** " + title);
+        System.out.println("\u001B[32m" + title + "\u001B[0m");
         System.out.println("*****************************************");
     }
 }

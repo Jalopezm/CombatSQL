@@ -1,8 +1,8 @@
 package Menu;
 
-public class UserMenu extends Menu{
+public class MenuUsuario extends Menu{
 
-    public UserMenu(String title) {
+    public MenuUsuario(String title) {
         super(title);
     }
 
@@ -14,13 +14,19 @@ public class UserMenu extends Menu{
             public void execute() {
                 //Que pasa Cuando se pulsa la Opcion
                 //Codigo...
-
+                Menu menuLogin = new MenuRegistro("    ____             _      __           \n" +
+                        "   / __ \\___  ____ _(_)____/ /__________ \n" +
+                        "  / /_/ / _ \\/ __ `/ / ___/ __/ ___/ __ \\\n" +
+                        " / _, _/  __/ /_/ / (__  ) /_/ /  / /_/ /\n" +
+                        "/_/ |_|\\___/\\__, /_/____/\\__/_/   \\____/ \n" +
+                        "           /____/                        ");
+                menuLogin.start();
             }
 
             @Override
             public String getOptionName() {
                 //Nombre de la Accion
-                return "Login";
+                return "Registro";
             }
         });
     }
@@ -29,6 +35,5 @@ public class UserMenu extends Menu{
     protected void onPreOptions() {
         //Se ejecuta antes de la Opciones
         //Texto...
-        System.out.println("hola");
     }
 }
