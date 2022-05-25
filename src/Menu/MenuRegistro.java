@@ -23,5 +23,6 @@ public class MenuRegistro extends Menu{
         System.out.println("Nuevo Usuario Creado: " + usuario.getNombre());
 
         //        Si nombre de usuario existe error Creando usuario
+
     }
 }
