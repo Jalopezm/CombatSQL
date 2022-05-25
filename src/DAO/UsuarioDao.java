@@ -3,10 +3,12 @@ package DAO;
 import domain.Usuario;
 
 public interface UsuarioDao {
+    boolean insertNewUser(Usuario usuario);
 
-    Usuario buscarPorNombre(String nombre);
+    Usuario login(String NombreUsuario, String contraseña);
 
-    Usuario validarContraseña(String contraseña);
+    boolean findByNombreUsuario(String NombreUsuario);
 
-    boolean crearUsuario(String nombre, String apellido, String nombreUsuario, String email, String contraseña);
+    boolean validarContraseña(String contraseña);
+
 }
