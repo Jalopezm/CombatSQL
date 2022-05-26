@@ -8,7 +8,7 @@ import java.util.List;
 public interface PersonajeDao {
     List<Personaje> showPersonajes(Usuario usuario);
 
-    boolean findByNombre(String nombre);
+    boolean findIfPersonajeExists(String nombre);
 
     boolean insertNuevoPersonaje(Personaje personaje);
 

@@ -7,6 +7,6 @@ public interface UsuarioDao {
 
     boolean login(String NombreUsuario, String contraseña);
 
-    boolean findByNombreUsuario(String NombreUsuario);
+    boolean findIfUsuarioExists(String NombreUsuario);
 
 }

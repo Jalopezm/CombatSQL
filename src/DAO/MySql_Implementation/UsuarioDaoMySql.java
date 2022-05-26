@@ -21,19 +21,20 @@ public class UsuarioDaoMySql implements UsuarioDao {
     public boolean insertNuevoUsuario(Usuario usuario) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ? AND contraseña = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `usuario` " +
+                    "(`nombreUsuario`, `nombre`, `apellido`, `correo`, `contraseña`) VALUES (?, ?, ?, ?, ?);");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, usuario.getNombreUsuario());
-            getAllStmnt.setString(2, usuario.getContraseña());
-            getAllStmnt.setString(3, usuario.getContraseña());
-            getAllStmnt.setString(4, usuario.getContraseña());
-            getAllStmnt.setString(5, usuario.getContraseña());
+            getAllStmnt.setString(2, usuario.getNombre());
+            getAllStmnt.setString(3, usuario.getApellido());
+            getAllStmnt.setString(4, usuario.getEmail());
+            getAllStmnt.setString(5, usuario.getPassword());
 
-            //Ejecución y guardado de la info de la query
-            ResultSet result = getAllStmnt.executeQuery();
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
 
-            if (result.next()) return true;
+            if (numberOfInserts == 1) return true;
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -63,7 +64,7 @@ public class UsuarioDaoMySql implements UsuarioDao {
     }
 
     @Override
-    public boolean findByNombreUsuario(String nombreUsuario) {
+    public boolean findIfUsuarioExists(String nombreUsuario) {
         try {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ?");

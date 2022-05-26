@@ -5,14 +5,14 @@ public class Usuario {
     private String apellido;
     private String nombreUsuario;
     private String email;
-    private String contraseña;
+    private String password;
 
     public Usuario(String nombre, String apellido, String nombreUsuario, String email, String contraseña) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = contraseña;
     }
 
     public String getNombre() {
@@ -47,11 +47,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
