@@ -6,6 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 
 import Conection.ClaseSingleton;
+import DAO.UsuarioDao;
+import domain.Usuario;
 
 public class MenuLogin extends Menu {
     public MenuLogin(String title) {
@@ -41,10 +43,11 @@ public class MenuLogin extends Menu {
             e.printStackTrace();
         }
 
-        UsuarioDaoMySql uDMySql = new UsuarioDaoMySql(con);
-
-        if (uDMySql.login(nombreUsuario, contraseñaHash)) {
-
+        UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
+        if (!usuarioDao.login(nombreUsuario, contraseñaHash)){
+            System.exit(1);
         }
+        System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");
+        Input.readString("Pulsa intro para continuar.");
     }
 }
