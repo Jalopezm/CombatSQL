@@ -1,8 +1,10 @@
+import Conection.ClaseSingleton;
 import Menu.Menu;
 import Menu.MenuUsuario;
 
 public class App {
     public static void main(String[] args) {
+        ClaseSingleton con = ClaseSingleton.getInstance();
         Menu menu = new MenuUsuario("" +
                 "    ____  _                            _     __    \n" +
                 "   / __ )(_)__  ____ _   _____  ____  (_)___/ /___ \n" +
