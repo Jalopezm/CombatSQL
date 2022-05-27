@@ -18,18 +18,18 @@ public class UsuarioDaoMySql implements UsuarioDao {
     }
 
     @Override
-    public boolean insertNuevoUsuario(Usuario usuario) {
+    public boolean insertNuevoUsuario(Usuario USUARIO) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `usuario` " +
-                    "(`nombreUsuario`, `nombre`, `apellido`, `correo`, `contraseña`) VALUES (?, ?, ?, ?, ?);");
+            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `USUARIO` " +
+                    "(`nombreUsuario`, `nombre`, `apellido`, `correo`, `password`) VALUES (?, ?, ?, ?, ?);");
 
             //Sustitución de los ?
-            getAllStmnt.setString(1, usuario.getNombreUsuario());
-            getAllStmnt.setString(2, usuario.getNombre());
-            getAllStmnt.setString(3, usuario.getApellido());
-            getAllStmnt.setString(4, usuario.getEmail());
-            getAllStmnt.setString(5, usuario.getPassword());
+            getAllStmnt.setString(1, USUARIO.getNombreUsuario());
+            getAllStmnt.setString(2, USUARIO.getNombre());
+            getAllStmnt.setString(3, USUARIO.getApellido());
+            getAllStmnt.setString(4, USUARIO.getEmail());
+            getAllStmnt.setString(5, USUARIO.getPassword());
 
             //Ejecución y verificación del funcionamiento de la query
             int numberOfInserts = getAllStmnt.executeUpdate();
@@ -46,7 +46,7 @@ public class UsuarioDaoMySql implements UsuarioDao {
     public boolean login(String nombreUsuario, String contraseña) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ? AND contraseña = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM USUARIO WHERE nombreUsuario = ? AND password = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombreUsuario);
@@ -67,7 +67,7 @@ public class UsuarioDaoMySql implements UsuarioDao {
     public boolean findIfUsuarioExists(String nombreUsuario) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM USUARIO WHERE nombreUsuario = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombreUsuario);

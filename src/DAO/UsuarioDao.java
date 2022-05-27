@@ -3,7 +3,7 @@ package DAO;
 import domain.Usuario;
 
 public interface UsuarioDao {
-    boolean insertNuevoUsuario(Usuario usuario);
+    boolean insertNuevoUsuario(Usuario USUARIO);
 
     boolean login(String NombreUsuario, String contraseña);
 

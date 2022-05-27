@@ -28,18 +28,17 @@ public class MenuRegistro extends Menu {
         String correo = Input.readString("Introduce un email");
         String contraseña = Input.readString("Introduce una Contraseña");
 
-        Usuario usuario = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
+        Usuario USUARIO = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
-        while (!usuarioDao.findIfUsuarioExists(nombreUsuario)) {
+        while (usuarioDao.findIfUsuarioExists(nombreUsuario)) {
             String newNombreUsuario = Input.readString("El nombre de usuario ya existe, introduce otro. Si has cambiado de idea introduce x.");
             if ( newNombreUsuario.equals("x")) {
                 System.exit(1);
             }
-            usuario.setNombreUsuario(newNombreUsuario);
-            usuario = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
+            USUARIO.setNombreUsuario(newNombreUsuario);
         }
-        usuarioDao.insertNuevoUsuario(usuario);
-        System.out.println("Nuevo Usuario Creado: " + usuario.getNombre());
+        usuarioDao.insertNuevoUsuario(USUARIO);
+        System.out.println("Nuevo Usuario Creado: " + USUARIO.getNombre());
         Input.readString("Pulsa intro para continuar.");
 
         try {
