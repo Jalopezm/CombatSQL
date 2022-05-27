@@ -32,10 +32,11 @@ public class MenuRegistro extends Menu {
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
         while (!usuarioDao.findIfUsuarioExists(nombreUsuario)) {
             String newNombreUsuario = Input.readString("El nombre de usuario ya existe, introduce otro. Si has cambiado de idea introduce x.");
-            if ( newNombreUsuario == "x") {
+            if ( newNombreUsuario.equals("x")) {
                 System.exit(1);
             }
             usuario.setNombreUsuario(newNombreUsuario);
+            usuario = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
         }
         usuarioDao.insertNuevoUsuario(usuario);
         System.out.println("Nuevo Usuario Creado: " + usuario.getNombre());
