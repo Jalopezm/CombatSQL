@@ -13,6 +13,7 @@ public class ClaseSingleton {
         this.con  = con;
     }
 
+
     public static ClaseSingleton getInstance() {
         if (instance == null) {
             instance = new ClaseSingleton();
