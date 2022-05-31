@@ -1,6 +1,7 @@
 package Menu;
 
 import DAO.MySql_Implementation.UsuarioDaoMySql;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -29,22 +30,18 @@ public class MenuLogin extends Menu {
         String contraseñaHash = "";
         //Hash Contraseña
         try {
-
             MessageDigest md = MessageDigest.getInstance("SHA-512");
-            String passwordToHash = "";
-            byte[] bytes = md.digest(passwordToHash.getBytes());
+            byte[] bytes = md.digest(contraseña.getBytes());
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bytes.length; i++) {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16)
-                        .substring(1));
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
             contraseñaHash = sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
-        if (!usuarioDao.login(nombreUsuario, contraseñaHash)){
+        if (!usuarioDao.login(nombreUsuario, contraseñaHash)) {
             System.exit(1);
         }
         System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");

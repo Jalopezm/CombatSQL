@@ -26,7 +26,7 @@ public class MenuRegistro extends Menu {
         String apellido = Input.readString("Introduce tu apellido");
         String nombreUsuario = Input.readString("Introduce el Nombre del Usuario");
         String correo = Input.readString("Introduce un email");
-        String contraseña = Input.readString("Introduce una Contraseña");
+        String contraseña = createHash(Input.readString("Introduce una Contraseña"));
 
         Usuario USUARIO = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
@@ -41,21 +41,22 @@ public class MenuRegistro extends Menu {
         System.out.println("Nuevo Usuario Creado: " + USUARIO.getNombre());
         Input.readString("Pulsa intro para continuar.");
 
+
+    }
+
+    private static String createHash(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
-            String passwordToHash = "";
-            byte[] bytes = md.digest(passwordToHash.getBytes());
+            byte[] bytes = md.digest(pass.getBytes());
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16)
                         .substring(1));
             }
-            String generatedPassword = sb.toString();
+            return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
-        //        Si nombre de usuario existe error Creando usuario
-
+        return null;
     }
 }
