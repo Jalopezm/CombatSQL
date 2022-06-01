@@ -63,15 +63,15 @@ public class PersonajeDaoMySql implements PersonajeDao {
         try {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `personaje` " +
-                    "(`nombre`, `saludActual`, `nivel`, `experiencia`, `monedas`, `clase`) VALUES (?, ?, ?, ?, ?, ?);");
+                    "(`nombre`, `nivel`, `experiencia`, `monedas`, `clase`, `saludActual`) VALUES (?, ?, ?, ?, ?, ?);");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, personaje.getNombre());
-            // getAllStmnt.setInt(2, obtener salud de la clase);
-            getAllStmnt.setInt(3, 1);
+            getAllStmnt.setInt(2, 1);
+            getAllStmnt.setInt(3, 0);
             getAllStmnt.setInt(4, 0);
-            getAllStmnt.setInt(5, 0);
-            //getAllStmnt.setObject(6, clase(falta crear la clase clase));
+            getAllStmnt.setString(5, personaje.getClase().getNombre());
+            getAllStmnt.setInt(6, personaje.getClase().getVidaMaxima());
 
             //Ejecución y verificación del funcionamiento de la query
             int numberOfInserts = getAllStmnt.executeUpdate();
