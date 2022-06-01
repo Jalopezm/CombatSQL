@@ -19,11 +19,11 @@ public abstract class Menu {
         for (int i = 0; i < 30; i++)  CLEAR += '\n';
         CLEAR += "\"\\033[H\\033[2J\"";
 
-        actions.put("x", new MenuAction() {
+        actions.put("", new MenuAction() {
             @Override
             public void execute() { running = false; }
             @Override
-            public String getOptionName() { return "Atrás"; }
+            public String getOptionName() { return "Pulsa intro para continuar"; }
 
         });
     }
@@ -34,7 +34,7 @@ public abstract class Menu {
 
     private void printOptions() {
         for (var key: actions.keySet()) {
-            System.out.println(key+") " + actions.get(key).getOptionName());
+            System.out.println(key + actions.get(key).getOptionName());
         }
     }
 

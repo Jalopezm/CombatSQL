@@ -26,7 +26,7 @@ public class MenuUsuario extends Menu{
             @Override
             public String getOptionName() {
                 //Nombre de la Accion
-                return "Registro";
+                return ") Registro";
             }
         });
         addOption("2", new MenuAction() {
@@ -45,7 +45,18 @@ public class MenuUsuario extends Menu{
 
             @Override
             public String getOptionName() {
-                return "Login";
+                return ") Login";
+            }
+        });
+        addOption("0", new MenuAction() {
+            @Override
+            public void execute() {
+                System.exit(1);
+            }
+
+            @Override
+            public String getOptionName() {
+                return ") Salir";
             }
         });
     }

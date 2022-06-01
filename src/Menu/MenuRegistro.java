@@ -39,7 +39,6 @@ public class MenuRegistro extends Menu {
         }
         usuarioDao.insertNuevoUsuario(USUARIO);
         System.out.println("Nuevo Usuario Creado: " + USUARIO.getNombre());
-        Input.readString("Pulsa intro para continuar.");
 
 
     }
