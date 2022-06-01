@@ -23,7 +23,7 @@ public abstract class Menu {
             @Override
             public void execute() { running = false; }
             @Override
-            public String getOptionName() { return "Pulsa intro para continuar"; }
+            public String getOptionName() { return "Elige una Opcion"; }
 
         });
     }

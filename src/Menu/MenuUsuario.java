@@ -48,7 +48,7 @@ public class MenuUsuario extends Menu{
                 return ") Login";
             }
         });
-        addOption("0", new MenuAction() {
+        addOption("S", new MenuAction() {
             @Override
             public void execute() {
                 System.exit(1);
