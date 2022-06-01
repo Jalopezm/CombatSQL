@@ -31,16 +31,15 @@ public class MenuRegistro extends Menu {
         Usuario USUARIO = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
         while (usuarioDao.findIfUsuarioExists(nombreUsuario)) {
-            String newNombreUsuario = Input.readString("El nombre de usuario ya existe, introduce otro. Si has cambiado de idea introduce x.");
-            if ( newNombreUsuario.equals("x")) {
-                System.exit(1);
-            }
-            USUARIO.setNombreUsuario(newNombreUsuario);
+            nombreUsuario = Input.readString("El nombre de usuario ya existe, introduce otro. Si has cambiado de idea pulsa intro");
+            if (!nombreUsuario.equals("")) {
+                USUARIO.setNombreUsuario(nombreUsuario);
+            } else break;
         }
-        usuarioDao.insertNuevoUsuario(USUARIO);
-        System.out.println("Nuevo Usuario Creado: " + USUARIO.getNombre());
-
-
+        if (!nombreUsuario.equals("")){
+            usuarioDao.insertNuevoUsuario(USUARIO);
+            System.out.println("Nuevo Usuario Creado: " + nombreUsuario);
+        }
     }
 
     private static String createHash(String pass) {

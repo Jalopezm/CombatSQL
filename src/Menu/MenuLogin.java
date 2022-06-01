@@ -42,9 +42,11 @@ public class MenuLogin extends Menu {
         }
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
         if (!usuarioDao.login(nombreUsuario, contraseñaHash)) {
-            System.exit(1);
+            System.out.println("Usuario y/o contraseña incorrecto/s");
+
+        }else {
+            System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");
         }
-        System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");
-        Input.readString("Pulsa intro para continuar.");
+
     }
 }
