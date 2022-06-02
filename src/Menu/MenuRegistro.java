@@ -1,15 +1,15 @@
 package Menu;
 
 import Conection.ClaseSingleton;
-import Conection.DBUtil;
+
 import DAO.MySql_Implementation.UsuarioDaoMySql;
 import DAO.UsuarioDao;
-import domain.Clase;
+
 import domain.Usuario;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
+
 
 public class MenuRegistro extends Menu {
     public MenuRegistro(String title) {
@@ -28,16 +28,16 @@ public class MenuRegistro extends Menu {
         String correo = Input.readString("Introduce un email");
         String contraseña = createHash(Input.readString("Introduce una Contraseña"));
 
-        Usuario USUARIO = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
+        Usuario usuario = new Usuario(nombre, apellido, nombreUsuario, correo, contraseña);
         UsuarioDao usuarioDao = new UsuarioDaoMySql(ClaseSingleton.getConnection());
         while (usuarioDao.findIfUsuarioExists(nombreUsuario)) {
             nombreUsuario = Input.readString("El nombre de usuario ya existe, introduce otro. Si has cambiado de idea pulsa intro");
             if (!nombreUsuario.equals("")) {
-                USUARIO.setNombreUsuario(nombreUsuario);
+                usuario.setNombreUsuario(nombreUsuario);
             } else break;
         }
         if (!nombreUsuario.equals("")){
-            usuarioDao.insertNuevoUsuario(USUARIO);
+            usuarioDao.insertNuevoUsuario(usuario);
             System.out.println("Nuevo Usuario Creado: " + nombreUsuario);
         }
     }

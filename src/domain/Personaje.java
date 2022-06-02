@@ -1,5 +1,8 @@
 package domain;
 
+import Conection.ClaseSingleton;
+import DAO.MySql_Implementation.UsuarioDaoMySql;
+
 public class Personaje {
     private String nombre;
     private Clase clase;
@@ -9,13 +12,14 @@ public class Personaje {
     private int monedas;
     private Usuario usuario;
 
-    public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
+    public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas, String usuario) {
         this.nombre = nombre;
         this.clase = clase;
         this.saludActual = salud;
         this.nivel = nivel;
         this.experiencia = experiencia;
         this.monedas = monedas;
+        this.usuario = new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(usuario);
     }
 
     public String getNombre() {

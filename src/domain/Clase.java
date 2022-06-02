@@ -1,19 +1,26 @@
 package domain;
 
+import Conection.ClaseSingleton;
+import DAO.ClaseDao;
+import DAO.MySql_Implementation.ClaseDaoMySql;
+
+import java.util.List;
 
 public class Clase {
     String nombre;
     int ataque;
     int evasion;
-    int precision;
+    int habilidad;
     int vidaMaxima;
 
-    public Clase(String nombre, int ataque, int evasion, int precision, int vidaMaxima) {
+    public Clase(String nombre) {
         this.nombre = nombre;
-        this.ataque = ataque;
-        this.evasion = evasion;
-        this.precision = precision;
-        this.vidaMaxima = vidaMaxima;
+        ClaseDao claseDao = new ClaseDaoMySql(ClaseSingleton.getConnection());
+        int[] atributes = claseDao.getAtributes(nombre);
+        this.ataque = atributes[0];
+        this.evasion = atributes[1];
+        this.habilidad = atributes[2];
+        this.vidaMaxima = atributes[3];
     }
 
     public String getNombre() {
@@ -40,12 +47,12 @@ public class Clase {
         this.evasion = evasion;
     }
 
-    public int getPrecision() {
-        return precision;
+    public int getHabilidad() {
+        return habilidad;
     }
 
-    public void setPrecision(int precision) {
-        this.precision = precision;
+    public void setHabilidad(int precision) {
+        this.habilidad = precision;
     }
 
     public int getVidaMaxima() {

@@ -1,12 +1,11 @@
 package DAO;
 
 import domain.Personaje;
-import domain.Usuario;
 
 import java.util.List;
 
 public interface PersonajeDao {
-    List<Personaje> showPersonajes(Usuario usuario);
+    List<Personaje> showPersonajes(String nombreUsuario);
 
     boolean findIfPersonajeExists(String nombre);
 

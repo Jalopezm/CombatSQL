@@ -24,13 +24,12 @@ public class ClaseDaoMySql implements ClaseDao {
             //Ejecución y guardado de la info de la query
             ResultSet result = getAllStmnt.executeQuery();
 
-
             if (result.next()) {
                 return new int[]{
-                        result.getInt("vidaMaxima"),
                         result.getInt("ataque"),
-                        result.getInt("precision"),
                         result.getInt("evasion"),
+                        result.getInt("habilidad"),
+                        result.getInt("vidaMaxima")
                 };
             }
 

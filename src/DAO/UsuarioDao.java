@@ -9,4 +9,5 @@ public interface UsuarioDao {
 
     boolean findIfUsuarioExists(String NombreUsuario);
 
+    Usuario getUsuario(String nombreUsuario);
 }

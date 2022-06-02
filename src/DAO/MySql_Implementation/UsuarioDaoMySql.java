@@ -1,12 +1,15 @@
 package DAO.MySql_Implementation;
 
+import Conection.ClaseSingleton;
 import DAO.UsuarioDao;
+import domain.Personaje;
 import domain.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class UsuarioDaoMySql implements UsuarioDao {
@@ -81,6 +84,32 @@ public class UsuarioDaoMySql implements UsuarioDao {
             System.err.println(e);
         }
         return false;
+    }
+
+    @Override
+    public Usuario getUsuario(String nombreUsuario) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ?");
+
+            //Sustitución de los ?
+            getAllStmnt.setString(1, nombreUsuario);
+
+            //Ejecución y guardado de la info de la query
+            ResultSet result = getAllStmnt.executeQuery();
+
+            if (result.next()) return new Usuario(
+                    result.getString("nombre"),
+                    result.getString("apellido"),
+                    result.getString("nombreUsuario"),
+                    result.getString("correo"),
+                    result.getString("password")
+                    );
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return null;
     }
 
 }

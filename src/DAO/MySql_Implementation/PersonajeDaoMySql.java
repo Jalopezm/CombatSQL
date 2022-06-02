@@ -2,7 +2,6 @@ package DAO.MySql_Implementation;
 
 import DAO.PersonajeDao;
 import domain.Personaje;
-import domain.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,13 +18,13 @@ public class PersonajeDaoMySql implements PersonajeDao {
     }
 
     @Override
-    public List<Personaje> showPersonajes(Usuario usuario) {
+    public List<Personaje> showPersonajes(String nombreUsuario) {
         try {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM personaje WHERE nombreUsuario = ?");
 
             //Sustitución de los ?
-            getAllStmnt.setString(1, usuario.getNombreUsuario());
+            getAllStmnt.setString(1, nombreUsuario);
 
             //Ejecución y guardado de la info de la query
             ResultSet result = getAllStmnt.executeQuery();
