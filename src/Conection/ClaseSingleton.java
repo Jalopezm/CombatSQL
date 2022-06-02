@@ -1,11 +1,9 @@
 package Conection;
 
-import domain.Usuario;
-
 import java.sql.Connection;
 
 public class ClaseSingleton {
-    private static String usuario;
+    private static String nombreUsuario;
     private static ClaseSingleton instance;
     private static Connection con;
 
@@ -27,11 +25,11 @@ public class ClaseSingleton {
         return con;
     }
 
-    public static String getUsuario() {
-        return usuario;
+    public static String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public static void setUsuario(String usuario) {
-        ClaseSingleton.usuario = usuario;
+    public static void setNombreUsuario(String nombreUsuario) {
+        ClaseSingleton.nombreUsuario = nombreUsuario;
     }
 }

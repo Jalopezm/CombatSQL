@@ -29,7 +29,7 @@ public class ClaseDaoMySql implements ClaseDao {
                         result.getInt("ataque"),
                         result.getInt("evasion"),
                         result.getInt("habilidad"),
-                        result.getInt("vidaMaxima")
+                        result.getInt("salud")
                 };
             }
 

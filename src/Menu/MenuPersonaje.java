@@ -11,7 +11,7 @@ public class MenuPersonaje extends Menu{
         addOption("1", new MenuAction() {
             @Override
             public void execute() {
-                Menu crearPersonaje = new MenuSeleccionPersonaje("Crear personaje");
+                Menu crearPersonaje = new MenuCreacionPersonaje("Crear personaje");
 
                 crearPersonaje.start();
             }
@@ -26,6 +26,7 @@ public class MenuPersonaje extends Menu{
             @Override
             public void execute() {
                 Menu seleccionPersonaje = new MenuSeleccionPersonaje("Selecciona personaje");
+                seleccionPersonaje.start();
             }
 
             @Override

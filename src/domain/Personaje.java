@@ -12,14 +12,27 @@ public class Personaje {
     private int monedas;
     private Usuario usuario;
 
-    public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas, String usuario) {
+    @Override
+    public String toString() {
+        return "Personaje{" +
+                "nombre='" + nombre + '\'' +
+                ", clase=" + clase +
+                ", saludActual=" + saludActual +
+                ", nivel=" + nivel +
+                ", experiencia=" + experiencia +
+                ", monedas=" + monedas +
+                ", usuario=" + usuario +
+                '}';
+    }
+
+    public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
         this.nombre = nombre;
         this.clase = clase;
         this.saludActual = salud;
         this.nivel = nivel;
         this.experiencia = experiencia;
         this.monedas = monedas;
-        this.usuario = new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(usuario);
+        this.usuario = new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(ClaseSingleton.getNombreUsuario());
     }
 
     public String getNombre() {

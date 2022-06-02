@@ -1,12 +1,15 @@
 package DAO.MySql_Implementation;
 
+import Conection.ClaseSingleton;
 import DAO.PersonajeDao;
+import domain.Clase;
 import domain.Personaje;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonajeDaoMySql implements PersonajeDao {
@@ -28,8 +31,19 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             //Ejecución y guardado de la info de la query
             ResultSet result = getAllStmnt.executeQuery();
+            List<Personaje> personajes = new ArrayList<>();
 
-            if (result.next()) return (List<Personaje>) result;
+            while (result.next()) {
+                personajes.add(new Personaje(
+                        result.getString("nombre"),
+                        new Clase(result.getString("clase")),
+                        result.getInt("saludActual"),
+                        result.getInt("nivel"),
+                        result.getInt("experiencia"),
+                        result.getInt("monedas"))
+                );
+            }
+            return personajes;
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -61,8 +75,8 @@ public class PersonajeDaoMySql implements PersonajeDao {
     public boolean insertNuevoPersonaje(Personaje personaje) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `personaje` " +
-                    "(`nombre`, `nivel`, `experiencia`, `monedas`, `clase`, `saludActual`) VALUES (?, ?, ?, ?, ?, ?);");
+            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `PERSONAJE` " +
+                    "(`nombre`, `nivel`, `experiencia`, `monedas`, `clase`, `saludActual`, `nombreUsuario`) VALUES (?, ?, ?, ?, ?, ?, ?);");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, personaje.getNombre());
@@ -70,7 +84,8 @@ public class PersonajeDaoMySql implements PersonajeDao {
             getAllStmnt.setInt(3, 0);
             getAllStmnt.setInt(4, 0);
             getAllStmnt.setString(5, personaje.getClase().getNombre());
-            getAllStmnt.setInt(6, personaje.getClase().getVidaMaxima());
+            getAllStmnt.setInt(6, personaje.getSaludActual());
+            getAllStmnt.setString(7, ClaseSingleton.getNombreUsuario());
 
             //Ejecución y verificación del funcionamiento de la query
             int numberOfInserts = getAllStmnt.executeUpdate();
