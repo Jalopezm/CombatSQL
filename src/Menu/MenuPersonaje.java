@@ -12,6 +12,8 @@ public class MenuPersonaje extends Menu{
             @Override
             public void execute() {
                 Menu crearPersonaje = new MenuSeleccionPersonaje("Crear personaje");
+
+                crearPersonaje.start();
             }
 
             @Override
