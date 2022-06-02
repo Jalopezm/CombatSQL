@@ -42,7 +42,7 @@ public class MenuRegistro extends Menu {
         }
     }
 
-    private static String createHash(String pass) {
+    static String createHash(String pass) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] bytes = md.digest(pass.getBytes());

@@ -19,9 +19,9 @@ public class MenuSeleccionPersonaje extends Menu{
     @Override
     protected void onPreOptions() {
         PersonajeDao personajeDao = new PersonajeDaoMySql(ClaseSingleton.getConnection());
-        List<Personaje> personajes = personajeDao.showPersonajes(ClaseSingleton.getUsuario());
-        for (int i = 0; i < personajes.size(); i++) {
-            System.out.println(personajes.get(i));
+        List<Personaje> personajes = personajeDao.showPersonajes(ClaseSingleton.getNombreUsuario());
+        for (Personaje personaje : personajes) {
+            System.out.println(personaje);
         }
     }
 }
