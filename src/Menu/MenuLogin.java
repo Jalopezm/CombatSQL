@@ -34,6 +34,7 @@ public class MenuLogin extends Menu {
         }else {
             System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");
             ClaseSingleton.setNombreUsuario(nombreUsuario);
+
             Menu menuPersonaje = new MenuPersonaje("\u001B[31m"+"   _____                                                         \n" +
                     "  /     \\   ____   ____  __ __                                   \n" +
                     " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +

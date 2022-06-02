@@ -24,7 +24,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
     public List<Personaje> showPersonajes(String nombreUsuario) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM personaje WHERE nombreUsuario = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM PERSONAJE WHERE nombreUsuario = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombreUsuario);
@@ -55,7 +55,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
     public boolean findIfPersonajeExists(String nombre) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM personaje WHERE nombre = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM PERSONAJE WHERE nombre = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombre);

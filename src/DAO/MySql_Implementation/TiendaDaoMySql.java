@@ -24,7 +24,7 @@ public class TiendaDaoMySql implements TiendaDao {
     public List<Tienda> showTienda() {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM tienda");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM TIENDA");
 
             //Sustitución de los ?
 

@@ -90,7 +90,7 @@ public class UsuarioDaoMySql implements UsuarioDao {
     public Usuario getUsuario(String nombreUsuario) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM USUARIO WHERE nombreUsuario = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombreUsuario);
