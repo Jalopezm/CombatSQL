@@ -24,7 +24,7 @@ public class Clase {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.toString();
     }
 
     public void setNombre(String nombre) {

@@ -3,6 +3,8 @@ package domain;
 import Conection.ClaseSingleton;
 import DAO.MySql_Implementation.UsuarioDaoMySql;
 
+import java.util.Locale;
+
 public class Personaje {
     private String nombre;
     private Clase clase;
@@ -14,15 +16,17 @@ public class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje{" +
-                "nombre='" + nombre + '\'' +
-                ", clase=" + clase +
-                ", saludActual=" + saludActual +
-                ", nivel=" + nivel +
-                ", experiencia=" + experiencia +
-                ", monedas=" + monedas +
-                ", usuario=" + usuario +
-                '}';
+        return "\n" +
+                "+--------------------------------+" +"\n"+
+                "|" +clase.getNombre()+"            "+"\n"+
+                "|" +nombre.toUpperCase(Locale.ROOT)+"\n"+
+                "|" +nivel+"   "+experiencia+"\n"+
+                "|" +"\n"+
+                "|" +monedas+"               STATS"+"\n"+
+                "|" +"                     "+saludActual+"\n"+
+                "|" +"\n"+
+                "|" +"\n"+
+                "+---------------------------------+";
     }
 
     public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
