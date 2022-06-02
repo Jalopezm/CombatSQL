@@ -23,5 +23,10 @@ public class MenuSeleccionPersonaje extends Menu{
         for (Personaje personaje : personajes) {
             System.out.println(personaje);
         }
+        //Usuario elige personaje
+        //una vez elegido se guarda
+        //Personaje personajeSeleccionado = personaje elegido por el usuario
+        //ClaseSingleton.setPersonaje(personajeSeleccionado);
+        //Ir al menu combate
     }
 }

@@ -1,11 +1,14 @@
 package Conection;
 
+import domain.Personaje;
+
 import java.sql.Connection;
 
 public class ClaseSingleton {
     private static String nombreUsuario;
     private static ClaseSingleton instance;
     private static Connection con;
+    private static Personaje personaje;
 
     // Constructor has private access so no one except this class
     // can create a new SingletonClass object
@@ -31,5 +34,13 @@ public class ClaseSingleton {
 
     public static void setNombreUsuario(String nombreUsuario) {
         ClaseSingleton.nombreUsuario = nombreUsuario;
+    }
+
+    public static Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public static void setPersonaje(Personaje personaje) {
+        ClaseSingleton.personaje = personaje;
     }
 }
