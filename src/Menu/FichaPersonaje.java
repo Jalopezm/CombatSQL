@@ -1,11 +1,10 @@
-// Guerrero rojo, mago azul y picaro Verde
+package Menu;// Guerrero rojo, mago azul y picaro Verde
 
 // Normal blanco, bendecido amarillo y épico lila
 
 import Conection.ClaseSingleton;
-import DAO.ClaseDao;
+
 import DAO.InventarioDao;
-import DAO.MySql_Implementation.ClaseDaoMySql;
 import DAO.MySql_Implementation.InventarioDaoMySql;
 import DAO.MySql_Implementation.ObjetoDaoMySql;
 import DAO.MySql_Implementation.PersonajeDaoMySql;
@@ -19,15 +18,17 @@ import java.sql.Connection;
 import java.util.List;
 
 public class FichaPersonaje {
-    public static void main(String[] args) {
+    String fichaPersonaje;
+    FichaPersonaje(Personaje personaje){
+        this.fichaPersonaje = getValoresFicha(personaje);
+    }
+
+    public String getValoresFicha(Personaje personaje) {
         Connection con = ClaseSingleton.getConnection();
-        ClaseDao claseDao = new ClaseDaoMySql(con);
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         PersonajeDao personajeDao = new PersonajeDaoMySql(con);
         ObjetoDao objetoDao = new ObjetoDaoMySql(con);
 
-        Personaje personaje = ClaseSingleton.getPersonaje();
-        int[] claseAtributes = claseDao.getAtributes(personaje.getClase().getNombre());
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeDao.getIdPersonaje(personaje));
 
         int ataque = personaje.getClase().getAtaque();
@@ -43,6 +44,30 @@ public class FichaPersonaje {
             vida += objeto.getModSalud() * objeto.getTipo().getModSalud();
             evasion += objeto.getModEvasion() * objeto.getTipo().getModEvasion();
         }
-
+        if (personaje.getClase().getNombre() == "Mago") {
+            return fichaMago(personaje);
+        } else if (personaje.getClase().getNombre() == "Picaro") {
+            return fichaPicaro(personaje);
+        } else if (personaje.getClase().getNombre() == "Guerrero") {
+            return fichaGuerrero(personaje);
+        } else {
+            return "";
+        }
     }
+
+    String fichaPicaro(Personaje personaje) {
+        String ficha = "+------------------------------------+\n";
+        ficha += "|";
+        ficha += personaje.getClase().getNombre();
+        return ficha;
+    }
+
+    private String fichaGuerrero(Personaje personaje) {
+        return "";
+    }
+
+    private String fichaMago(Personaje personaje) {
+        return "";
+    }
+
 }

@@ -14,21 +14,6 @@ public class Personaje {
     private int monedas;
     private Usuario usuario;
 
-    @Override
-    public String toString() {
-        return "\n" +
-                "+--------------------------------+" +"\n"+
-                "|" +clase.getNombre()+"            "+"\n"+
-                "|" +nombre.toUpperCase(Locale.ROOT)+"\n"+
-                "|" +nivel+"   "+experiencia+"\n"+
-                "|" +"\n"+
-                "|" +monedas+"               STATS"+"\n"+
-                "|" +"                     "+saludActual+"\n"+
-                "|" +"\n"+
-                "|" +"\n"+
-                "+---------------------------------+";
-    }
-
     public Personaje(String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
         this.nombre = nombre;
         this.clase = clase;
