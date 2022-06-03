@@ -6,4 +6,8 @@ public class Calidad {
     float ataque;
     float habilidad;
     float evasion;
+
+    public Calidad(String tipo) {
+        this.tipo = tipo;
+    }
 }
