@@ -17,10 +17,10 @@ public class ObjetoDaoMySql implements ObjetoDao {
     }
 
     @Override
-    public Objeto getAtributes(String objetoID) {
+    public Objeto getAtributes(int objetoID) {
         try {
             PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM OBJETO WHERE objetoID = ?");
-            getAllStmnt.setString(1, objetoID);
+            getAllStmnt.setInt(1, objetoID);
 
             ResultSet result = getAllStmnt.executeQuery();
 

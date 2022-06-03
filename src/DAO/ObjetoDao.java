@@ -3,5 +3,5 @@ package DAO;
 import domain.Objeto;
 
 public interface ObjetoDao {
-    Objeto getAtributes(String nombreObjeto);
+    Objeto getAtributes(int nombreObjeto);
 }
