@@ -11,4 +11,5 @@ public interface PersonajeDao {
 
     boolean insertNuevoPersonaje(Personaje personaje);
 
+    int getIdPersonaje(Personaje personaje);
 }

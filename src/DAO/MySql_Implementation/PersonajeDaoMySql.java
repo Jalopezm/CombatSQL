@@ -2,7 +2,9 @@ package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
 import DAO.PersonajeDao;
+import domain.Calidad;
 import domain.Clase;
+import domain.Objeto;
 import domain.Personaje;
 
 import java.sql.Connection;
@@ -96,5 +98,21 @@ public class PersonajeDaoMySql implements PersonajeDao {
             System.err.println(e);
         }
         return false;
+    }
+
+    @Override
+    public int getIdPersonaje(Personaje personaje) {
+        try {
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT personajeID FROM PERSONAJE WHERE nombre = ?");
+            getAllStmnt.setString(1, personaje.getNombre());
+
+            ResultSet result = getAllStmnt.executeQuery();
+
+            return result.getInt("personajeID");
+        } catch (SQLException e) {
+            System.err.println(e);
+
+        }
+        return 0;
     }
 }
