@@ -16,7 +16,7 @@ public class ClaseDaoMySql implements ClaseDao {
     public int[] getAtributes(String nombre) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM CLASE WHERE nombre = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM CLASE WHERE nombreClase = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombre);

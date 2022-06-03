@@ -35,8 +35,8 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             while (result.next()) {
                 personajes.add(new Personaje(
-                        result.getString("nombre"),
-                        new Clase(result.getString("clase")),
+                        result.getString("nombrePersonaje"),
+                        new Clase(result.getString("nombreClase")),
                         result.getInt("saludActual"),
                         result.getInt("nivel"),
                         result.getInt("experiencia"),
@@ -76,7 +76,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
         try {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `PERSONAJE` " +
-                    "(`nombre`, `nivel`, `experiencia`, `monedas`, `clase`, `saludActual`, `nombreUsuario`) VALUES (?, ?, ?, ?, ?, ?, ?);");
+                    "(`nombrePersonaje`, `nivel`, `experiencia`, `monedas`, `nombreClase`, `saludActual`, `nombreUsuario`) VALUES (?, ?, ?, ?, ?, ?, ?);");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, personaje.getNombre());
