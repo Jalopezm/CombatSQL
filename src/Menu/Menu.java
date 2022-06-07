@@ -19,11 +19,11 @@ public abstract class Menu {
         for (int i = 0; i < 30; i++)  CLEAR += '\n';
         CLEAR += "\"\\033[H\\033[2J\"";
 
-        actions.put(" ", new MenuAction() {
+        actions.put("x", new MenuAction() {
             @Override
             public void execute() { running = false; }
             @Override
-            public String getOptionName() { return "Pulsa Intro para Continuar..."; }
+            public String getOptionName() { return "Introduce x para Salir..."; }
 
         });
     }
