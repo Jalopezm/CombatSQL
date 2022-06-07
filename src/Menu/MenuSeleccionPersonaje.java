@@ -27,8 +27,7 @@ public class MenuSeleccionPersonaje extends Menu{
 
                 @Override
                 public String getOptionName() {
-                    FichaPersonaje fichaPersonaje = new FichaPersonaje(ClaseSingleton.getPersonaje());
-                    return fichaPersonaje.fichaPersonaje;
+                    return new FichaPersonaje(personajes.get(idx)).toString();
                 }
             });
         }

@@ -37,6 +37,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             while (result.next()) {
                 personajes.add(new Personaje(
+                        new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(ClaseSingleton.getNombreUsuario()),
                         result.getString("nombrePersonaje"),
                         new Clase(result.getString("nombreClase")),
                         result.getInt("saludActual"),
@@ -48,7 +49,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
             return personajes;
 
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -57,7 +58,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
     public boolean findIfPersonajeExists(String nombre) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM PERSONAJE WHERE nombre = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM PERSONAJE WHERE nombrePersonaje = ?");
 
             //Sustitución de los ?
             getAllStmnt.setString(1, nombre);
@@ -103,7 +104,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
     @Override
     public int getIdPersonaje(Personaje personaje) {
         try {
-            PreparedStatement getAllStmnt = con.prepareStatement("SELECT personajeID FROM PERSONAJE WHERE nombre = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT personajeID FROM PERSONAJE WHERE nombrePersonaje = ?");
             getAllStmnt.setString(1, personaje.getNombre());
 
             ResultSet result = getAllStmnt.executeQuery();

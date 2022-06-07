@@ -32,9 +32,8 @@ public class ClaseDaoMySql implements ClaseDao {
                         result.getInt("salud")
                 };
             }
-
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }

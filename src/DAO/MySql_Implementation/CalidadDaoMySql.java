@@ -36,7 +36,7 @@ public class CalidadDaoMySql implements CalidadDao {
             }
 
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }

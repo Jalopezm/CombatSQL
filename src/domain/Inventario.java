@@ -1,10 +1,12 @@
 package domain;
 
 public class Inventario {
+    int inventarioID;
     int objetoID;
     int personajeID;
 
-    public Inventario(int objetoID, int personajeID) {
+    public Inventario(int inventarioID, int objetoID, int personajeID) {
+        this.inventarioID = inventarioID;
         this.objetoID = objetoID;
         this.personajeID = personajeID;
     }

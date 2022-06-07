@@ -32,8 +32,9 @@ public class InventarioDaoMySql implements InventarioDao {
 
             while (result.next()) {
                 inventario.add(new Inventario(
-                        result.getInt("experiencia"),
-                        result.getInt("monedas"))
+                        result.getInt("invetarioID"),
+                        result.getInt("objetoID"),
+                        result.getInt("personajeID"))
                 );
             }
             return inventario;

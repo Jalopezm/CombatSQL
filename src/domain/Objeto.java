@@ -9,8 +9,8 @@ public class Objeto {
     int modHabilidad;
     int modEvasion;
 
-    public Objeto(String nombreObjeto, Calidad tipo, int modSalud, int modAtaque, int modHabilidad, int modEvasion) {
-//        this.objetoID = objetoID;
+    public Objeto(int objetoID, String nombreObjeto, Calidad tipo, int modSalud, int modAtaque, int modHabilidad, int modEvasion) {
+        this.objetoID = objetoID;
         this.nombreObjeto = nombreObjeto;
         this.tipo = tipo;
         this.modSalud = modSalud;

@@ -1,5 +1,7 @@
 package DAO.MySql_Implementation;
 
+import Conection.ClaseSingleton;
+import DAO.CalidadDao;
 import DAO.ObjetoDao;
 import domain.Calidad;
 import domain.Objeto;
@@ -26,6 +28,7 @@ public class ObjetoDaoMySql implements ObjetoDao {
 
 
             return new Objeto(
+                    result.getInt("objetoID"),
                     result.getString("nombreObjeto"),
                     new Calidad(result.getString("tipo")),
                     result.getInt("modSalud"),
