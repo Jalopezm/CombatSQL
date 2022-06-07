@@ -18,14 +18,6 @@ public abstract class Menu {
 
         for (int i = 0; i < 30; i++)  CLEAR += '\n';
         CLEAR += "\"\\033[H\\033[2J\"";
-
-        actions.put("x", new MenuAction() {
-            @Override
-            public void execute() { running = false; }
-            @Override
-            public String getOptionName() { return "Introduce x para Salir..."; }
-
-        });
     }
 
     public void addOption(String choiceInput, MenuAction callback){
