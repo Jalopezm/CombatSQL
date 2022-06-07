@@ -57,8 +57,16 @@ public class FichaPersonaje {
 
     String fichaPicaro(Personaje personaje) {
         String ficha = "+------------------------------------+\n";
-        ficha += "|";
-        ficha += personaje.getClase().getNombre();
+        ficha += "|"+"               "+personaje.getClase().getNombre()+"               "+"|"+"\n";
+        ficha+= "|"+personaje.getNombre()+"nivel"+personaje.getNivel()+"                    "+"|"+"\n";
+        ficha+="|"+"Monedas"+personaje.getMonedas()+"|"+"\n";
+        ficha+="|"+"Estadisticas"+"|"+"\n";
+        ficha+="|"+"SaludActual"+personaje.getSaludActual()+"|"+"\n";
+        ficha+="|"+"Ataque"+personaje.getMonedas()+"|"+"\n";
+        ficha+="|"+"Precision"+personaje.getMonedas()+"|"+"\n";
+        ficha+="|"+"Evasion"+personaje.getMonedas()+"|"+"\n";
+        ficha += "+------------------------------------+\n";
+
         return ficha;
     }
 
