@@ -1,5 +1,11 @@
 package DAO;
 
 public interface ClaseDao {
-    int[] getAtributes(String nombre);
+    int getAtk(String nombreClase);
+
+    int getEv(String nombreClase);
+
+    int getHab(String nombreClase);
+
+    int getVidaMax(String nombreClase);
 }

@@ -1,12 +1,16 @@
 package Menu;
 
 import Conection.ClaseSingleton;
+import DAO.ClaseDao;
+import DAO.MySql_Implementation.ClaseDaoMySql;
 import DAO.MySql_Implementation.PersonajeDaoMySql;
 import DAO.MySql_Implementation.UsuarioDaoMySql;
 import DAO.PersonajeDao;
 import DAO.UsuarioDao;
 import domain.Clase;
 import domain.Personaje;
+
+import java.sql.Connection;
 
 public class MenuCreacionPersonaje extends Menu{
 
@@ -20,11 +24,19 @@ public class MenuCreacionPersonaje extends Menu{
 
     @Override
     protected void onPreOptions() {
+        Connection con = ClaseSingleton.getConnection();
         String nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
-        Clase clase = new Clase(Input.readString("Introduce la clase"));
+        ClaseDao claseDao = new ClaseDaoMySql(con);
+        String nombreClase = Input.readString("Introduce la clase");
+        Clase clase = new Clase(
+                nombreClase,
+                claseDao.getAtk(nombreClase),
+                claseDao.getEv(nombreClase),
+                claseDao.getHab(nombreClase),
+                claseDao.getVidaMax(nombreClase));
 
         Personaje personaje = new Personaje(
-                new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(ClaseSingleton.getNombreUsuario()),
+                new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),
                 nombrePersonaje,
                 clase,
                 clase.getVidaMaxima(),
