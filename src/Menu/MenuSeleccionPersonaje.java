@@ -31,6 +31,7 @@ public class MenuSeleccionPersonaje extends Menu{
                 }
             });
         }
+
         addOption("S", new MenuAction() {
             @Override
             public void execute() {
@@ -58,6 +59,5 @@ public class MenuSeleccionPersonaje extends Menu{
 
     @Override
     protected void onPreOptions() {
-
     }
 }

@@ -1,5 +1,7 @@
 package Menu;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +27,13 @@ public abstract class Menu {
     }
 
     private void printOptions() {
-        for (var key: actions.keySet()) {
-            System.out.println(key + actions.get(key).getOptionName());
+        var keySet = actions.keySet();
+        var keys = new ArrayList<>(keySet);
+        Collections.sort(keys);
+
+        for (var key: keys) {
+                System.out.println(key + actions.get(key).getOptionName());
+
         }
     }
 
