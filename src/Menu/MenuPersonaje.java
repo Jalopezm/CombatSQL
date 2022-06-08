@@ -34,6 +34,24 @@ public class MenuPersonaje extends Menu{
                 return ") Seleccionar Personaje";
             }
         });
+        addOption("S", new MenuAction() {
+            @Override
+            public void execute() {
+               MenuUsuario menuUsuario = new MenuUsuario("" +
+                       "    ____  _                            _     __    \n" +
+                       "   / __ )(_)__  ____ _   _____  ____  (_)___/ /___ \n" +
+                       "  / __  / / _ \\/ __ \\ | / / _ \\/ __ \\/ / __  / __ \\\n" +
+                       " / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /\n" +
+                       "/_____/_/\\___/_/ /_/|___/\\___/_/ /_/_/\\__,_/\\____/ \n" +
+                       "                                                   ");
+               menuUsuario.start();
+            }
+
+            @Override
+            public String getOptionName() {
+                return ") Salir";
+            }
+        });
 
     }
 
