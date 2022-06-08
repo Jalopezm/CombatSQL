@@ -18,10 +18,6 @@ public class ObjetoDaoMySql implements ObjetoDao {
         this.con = con;
     }
 
-    @Override
-    public Objeto getAtributes(int objetoID) {
-        return null;
-    }
 
     @Override
     public Objeto getObjetoByID(int objetoID) {
@@ -36,10 +32,10 @@ public class ObjetoDaoMySql implements ObjetoDao {
                         result.getInt("objetoID"),
                         result.getString("nombreObjeto"),
                         new CalidadDaoMySql(con).getCalidad(result.getString("tipo")),
-                        result.getInt("modSalud"),
-                        result.getInt("modAtaque"),
-                        result.getInt("modHabilidad"),
-                        result.getInt("modEvasion"));
+                        result.getInt("ModSalud"),
+                        result.getInt("ModAtaque"),
+                        result.getInt("ModHabilidad"),
+                        result.getInt("ModEvasion"));
             }
 
 

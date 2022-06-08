@@ -54,7 +54,7 @@ public class FichaPersonaje {
         if (inventario != null){
             for (int i = 0; i < inventario.size(); i++) {
                 int objetoID = inventario.get(i).getObjetoID();
-                Objeto objeto = objetoDao.getAtributes(objetoID);
+                Objeto objeto = objetoDao.getObjetoByID(objetoID);
                 ataque += objeto.getModAtaque() * objeto.getTipo().getModAtaque();
                 habilidad += objeto.getModHabilidad() * objeto.getTipo().getModHabilidad();
                 vidaMaxima += objeto.getModSalud() * objeto.getTipo().getModSalud();
