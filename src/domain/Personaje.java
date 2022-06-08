@@ -6,6 +6,7 @@ import DAO.MySql_Implementation.UsuarioDaoMySql;
 import java.util.Locale;
 
 public class Personaje {
+    private int personajeID;
     private String nombre;
     private Clase clase;
     private int saludActual;
@@ -15,6 +16,16 @@ public class Personaje {
     private Usuario usuario;
 
     public Personaje(Usuario usuario, String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
+        this.nombre = nombre;
+        this.clase = clase;
+        this.saludActual = salud;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+        this.monedas = monedas;
+        this.usuario = usuario;
+    }
+    public Personaje(int personajeID, Usuario usuario, String nombre, Clase clase, int salud, int nivel, int experiencia, int monedas) {
+        this.personajeID = personajeID;
         this.nombre = nombre;
         this.clase = clase;
         this.saludActual = salud;

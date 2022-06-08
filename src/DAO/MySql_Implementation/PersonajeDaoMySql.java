@@ -37,6 +37,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             while (result.next()) {
                 personajes.add(new Personaje(
+                        result.getInt("personajeID"),
                         new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(ClaseSingleton.getNombreUsuario()),
                         result.getString("nombrePersonaje"),
                         new ClaseDaoMySql(con).getClase(result.getString("nombreClase")),
@@ -108,8 +109,10 @@ public class PersonajeDaoMySql implements PersonajeDao {
             getAllStmnt.setString(1, personaje.getNombre());
 
             ResultSet result = getAllStmnt.executeQuery();
+            if (result.next()) {
+                return result.getInt("personajeID");
+            }
 
-            return result.getInt("personajeID");
         } catch (SQLException e) {
             System.err.println(e);
 

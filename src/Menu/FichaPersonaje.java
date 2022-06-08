@@ -16,66 +16,160 @@ import domain.Personaje;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Objects;
 
 public class FichaPersonaje {
-    String fichaPersonaje;
-    FichaPersonaje(Personaje personaje){
-        this.fichaPersonaje = getValoresFicha(personaje);
+    int ataque;
+    int habilidad;
+    int vidaMaxima;
+    int evasion;
+    String clase;
+    Personaje personaje;
+
+    public FichaPersonaje(int ataque, int habilidad, int vidaMaxima, int evasion, String clase, Personaje personaje) {
+        this.ataque = ataque;
+        this.habilidad = habilidad;
+        this.vidaMaxima = vidaMaxima;
+        this.evasion = evasion;
+        this.clase = clase;
+        this.personaje = personaje;
     }
 
-    public String getValoresFicha(Personaje personaje) {
+    public static FichaPersonaje getValoresFicha(Personaje personaje) {
         Connection con = ClaseSingleton.getConnection();
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         PersonajeDao personajeDao = new PersonajeDaoMySql(con);
         ObjetoDao objetoDao = new ObjetoDaoMySql(con);
 
-        List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeDao.getIdPersonaje(personaje));
-
         int ataque = personaje.getClase().getAtaque();
         int habilidad = personaje.getClase().getHabilidad();
-        int vida = personaje.getClase().getVidaMaxima();
+        int vidaActual = personaje.getSaludActual();
+        int vidaMaxima = personaje.getClase().getVidaMaxima();
         int evasion = personaje.getClase().getEvasion();
+        String clase = personaje.getClase().getNombre();
 
-        for (int i = 0; i < inventario.size(); i++) {
-            int objetoID = inventario.get(i).getObjetoID();
-            Objeto objeto = objetoDao.getAtributes(objetoID);
-            ataque += objeto.getModAtaque() * objeto.getTipo().getModAtaque();
-            habilidad += objeto.getModHabilidad() * objeto.getTipo().getModHabilidad();
-            vida += objeto.getModSalud() * objeto.getTipo().getModSalud();
-            evasion += objeto.getModEvasion() * objeto.getTipo().getModEvasion();
+        int idPersonaje = personajeDao.getIdPersonaje(personaje);
+
+        List<Inventario> inventario = inventarioDao.getPersonajeInventario(idPersonaje);
+        if (inventario != null){
+            for (int i = 0; i < inventario.size(); i++) {
+                int objetoID = inventario.get(i).getObjetoID();
+                Objeto objeto = objetoDao.getAtributes(objetoID);
+                ataque += objeto.getModAtaque() * objeto.getTipo().getModAtaque();
+                habilidad += objeto.getModHabilidad() * objeto.getTipo().getModHabilidad();
+                vidaMaxima += objeto.getModSalud() * objeto.getTipo().getModSalud();
+                evasion += objeto.getModEvasion() * objeto.getTipo().getModEvasion();
+            }
         }
-        if (personaje.getClase().getNombre() == "Mago") {
-            return fichaMago(personaje);
-        } else if (personaje.getClase().getNombre() == "Picaro") {
-            return fichaPicaro(personaje);
-        } else if (personaje.getClase().getNombre() == "Guerrero") {
-            return fichaGuerrero(personaje);
+        return new FichaPersonaje(ataque, habilidad, vidaMaxima, evasion, clase, personaje);
+    }
+
+
+    @Override
+    public String toString() {
+        if (Objects.equals(this.clase, "Mago")) {
+            return fichaMago();
+        } else if (Objects.equals(this.clase, "Picaro")) {
+            return fichaPicaro();
+        } else if (Objects.equals(this.clase, "Guerrero")) {
+            return fichaGuerrero();
         } else {
             return "";
         }
     }
 
-    String fichaPicaro(Personaje personaje) {
+    String fichaPicaro() {
         String ficha = "+------------------------------------+\n";
-        ficha += "|"+"               "+personaje.getClase().getNombre()+"               "+"|"+"\n";
-        ficha+= "|"+personaje.getNombre()+"nivel"+personaje.getNivel()+"                    "+"|"+"\n";
-        ficha+="|"+"Monedas"+personaje.getMonedas()+"|"+"\n";
-        ficha+="|"+"Estadisticas"+"|"+"\n";
-        ficha+="|"+"SaludActual"+personaje.getSaludActual()+"|"+"\n";
-        ficha+="|"+"Ataque"+personaje.getMonedas()+"|"+"\n";
-        ficha+="|"+"Precision"+personaje.getMonedas()+"|"+"\n";
-        ficha+="|"+"Evasion"+personaje.getMonedas()+"|"+"\n";
+        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
+        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
+        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
+        ficha += "|" + "Estadisticas" + "|" + "\n";
+        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
+        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
+        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
+        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
         ficha += "+------------------------------------+\n";
 
         return ficha;
     }
 
-    private String fichaGuerrero(Personaje personaje) {
-        return "";
+    private String fichaGuerrero() {
+        String ficha = "+------------------------------------+\n";
+        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
+        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
+        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
+        ficha += "|" + "Estadisticas" + "|" + "\n";
+        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
+        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
+        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
+        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
+        ficha += "+------------------------------------+\n";
+
+        return ficha;
     }
 
-    private String fichaMago(Personaje personaje) {
-        return "";
+    private String fichaMago() {
+        String ficha = "+------------------------------------+\n";
+        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
+        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
+        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
+        ficha += "|" + "Estadisticas" + "|" + "\n";
+        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
+        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
+        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
+        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
+        ficha += "+------------------------------------+\n";
+
+        return ficha;
     }
 
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+
+    public int getHabilidad() {
+        return habilidad;
+    }
+
+    public void setHabilidad(int habilidad) {
+        this.habilidad = habilidad;
+    }
+
+    public int getVidaMaxima() {
+        return vidaMaxima;
+    }
+
+    public void setVidaMaxima(int vidaMaxima) {
+        this.vidaMaxima = vidaMaxima;
+    }
+
+    public int getEvasion() {
+        return evasion;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
+    }
 }
+
+

@@ -12,7 +12,7 @@ import domain.Personaje;
 
 import java.sql.Connection;
 
-public class MenuCreacionPersonaje extends Menu{
+public class MenuCreacionPersonaje extends Menu {
 
     public MenuCreacionPersonaje(String title) {
         super(title);
@@ -44,33 +44,56 @@ public class MenuCreacionPersonaje extends Menu{
             }
         });
     }
+
     @Override
     protected void onPreOptions() {
         Connection con = ClaseSingleton.getConnection();
         String nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
         ClaseDao claseDao = new ClaseDaoMySql(con);
-        String nombreClase = Input.readString("Introduce la clase");
-        Clase clase = claseDao.getClase(nombreClase);
-
-        Personaje personaje = new Personaje(
-                new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),
-                nombrePersonaje,
-                clase,
-                clase.getVidaMaxima(),
-                1,
-                0,
-                0);
-        PersonajeDao personajeDao = new PersonajeDaoMySql(ClaseSingleton.getConnection());
-        while (personajeDao.findIfPersonajeExists(nombrePersonaje)) {
-            nombrePersonaje = Input.readString("El nombre del personaje ya existe, introduce otro. Si has cambiado de idea pulsa intro");
-            if (!nombrePersonaje.equals("")) {
-                personaje.setNombre(nombrePersonaje);
-            } else break;
+        Clase clase = claseDao.getClase("");
+        boolean respuestaValida = false;
+        while (!respuestaValida) {
+            System.out.println("0) Picaro");
+            System.out.println("1) Mago");
+            System.out.println("2) Guerrero");
+            String nombreClase = Input.readString("Elige una de las Clases");
+            if (nombreClase.equals("0")) {
+                clase = claseDao.getClase("Picaro");
+                respuestaValida = true;
+            } else if (nombreClase.equals("1")) {
+                clase = claseDao.getClase("Mago");
+                respuestaValida = true;
+            } else if (nombreClase.equals("2")) {
+                clase = claseDao.getClase("Guerrero");
+                respuestaValida = true;
+            } else {
+                System.out.println("Introduce un número valido");
         }
-        if (!nombrePersonaje.equals("")){
-            personajeDao.insertNuevoPersonaje(personaje);
-            System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
-        }
-
     }
+
+    Personaje personaje = new Personaje(
+            new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),
+            nombrePersonaje,
+            clase,
+            clase.getVidaMaxima(),
+            1,
+            0,
+            0);
+    PersonajeDao personajeDao = new PersonajeDaoMySql(ClaseSingleton.getConnection());
+        while(personajeDao.findIfPersonajeExists(nombrePersonaje))
+
+    {
+        nombrePersonaje = Input.readString("El nombre del personaje ya existe, introduce otro. Si has cambiado de idea pulsa intro");
+        if (!nombrePersonaje.equals("")) {
+            personaje.setNombre(nombrePersonaje);
+        } else break;
+    }
+        if(!nombrePersonaje.equals(""))
+
+    {
+        personajeDao.insertNuevoPersonaje(personaje);
+        System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
+    }
+
+}
 }

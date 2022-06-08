@@ -26,15 +26,16 @@ public class ObjetoDaoMySql implements ObjetoDao {
 
             ResultSet result = getAllStmnt.executeQuery();
 
-
-            return new Objeto(
-                    result.getInt("objetoID"),
-                    result.getString("nombreObjeto"),
-                    new CalidadDaoMySql(con).getCalidad(result.getString("tipo")),
-                    result.getInt("modSalud"),
-                    result.getInt("modAtaque"),
-                    result.getInt("modHabilidad"),
-                    result.getInt("modEvasion"));
+            if (result.next()) {
+                return new Objeto(
+                        result.getInt("objetoID"),
+                        result.getString("nombreObjeto"),
+                        new CalidadDaoMySql(con).getCalidad(result.getString("tipo")),
+                        result.getInt("modSalud"),
+                        result.getInt("modAtaque"),
+                        result.getInt("modHabilidad"),
+                        result.getInt("modEvasion"));
+            }
 
 
         } catch (SQLException e) {

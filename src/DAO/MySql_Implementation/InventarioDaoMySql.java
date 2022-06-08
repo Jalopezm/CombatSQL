@@ -32,7 +32,7 @@ public class InventarioDaoMySql implements InventarioDao {
 
             while (result.next()) {
                 inventario.add(new Inventario(
-                        result.getInt("invetarioID"),
+                        result.getInt("inventarioID"),
                         result.getInt("objetoID"),
                         result.getInt("personajeID"))
                 );
@@ -40,7 +40,7 @@ public class InventarioDaoMySql implements InventarioDao {
             return inventario;
 
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
