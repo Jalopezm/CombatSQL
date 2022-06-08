@@ -30,7 +30,7 @@ public class ObjetoDaoMySql implements ObjetoDao {
             return new Objeto(
                     result.getInt("objetoID"),
                     result.getString("nombreObjeto"),
-                    new Calidad(result.getString("tipo")),
+                    new CalidadDaoMySql(con).getCalidad(result.getString("tipo")),
                     result.getInt("modSalud"),
                     result.getInt("modAtaque"),
                     result.getInt("modHabilidad"),

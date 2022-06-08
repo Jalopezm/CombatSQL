@@ -1,6 +1,7 @@
 package DAO.MySql_Implementation;
 
 import DAO.CalidadDao;
+import domain.Calidad;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class CalidadDaoMySql implements CalidadDao {
 
 
     @Override
-    public int[] getAtributes(String tipo) {
+    public Calidad getCalidad(String tipo) {
         try {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM CALIDAD WHERE tipo = ?");
@@ -27,12 +28,13 @@ public class CalidadDaoMySql implements CalidadDao {
             ResultSet result = getAllStmnt.executeQuery();
 
             if (result.next()) {
-                return new int[]{
+                return new Calidad(
+                    result.getString("tipo"),
                         result.getInt("modAtaque"),
                         result.getInt("modEvasion"),
                         result.getInt("modHabilidad"),
                         result.getInt("modSalud")
-                };
+                );
             }
 
         } catch (SQLException e) {

@@ -39,7 +39,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
                 personajes.add(new Personaje(
                         new UsuarioDaoMySql(ClaseSingleton.getConnection()).getUsuario(ClaseSingleton.getNombreUsuario()),
                         result.getString("nombrePersonaje"),
-                        new Clase(result.getString("nombreClase")),
+                        new ClaseDaoMySql(con).getClase(result.getString("nombreClase")),
                         result.getInt("saludActual"),
                         result.getInt("nivel"),
                         result.getInt("experiencia"),

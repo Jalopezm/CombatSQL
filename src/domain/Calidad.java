@@ -7,13 +7,14 @@ public class Calidad {
     float modHabilidad;
     float modEvasion;
 
-    public Calidad(String tipo, float modSalud, float modAtaque, float modHabilidad, float modEvasion) {
+    public Calidad(String tipo, float modAtaque, float modEvasion, float modHabilidad, float modSalud) {
         this.tipo = tipo;
-        this.modSalud = modSalud;
         this.modAtaque = modAtaque;
-        this.modHabilidad = modHabilidad;
         this.modEvasion = modEvasion;
+        this.modHabilidad = modHabilidad;
+        this.modSalud = modSalud;
     }
+
 
     public String getTipo() {
         return tipo;

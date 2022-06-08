@@ -28,12 +28,7 @@ public class MenuCreacionPersonaje extends Menu{
         String nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
         ClaseDao claseDao = new ClaseDaoMySql(con);
         String nombreClase = Input.readString("Introduce la clase");
-        Clase clase = new Clase(
-                nombreClase,
-                claseDao.getAtk(nombreClase),
-                claseDao.getEv(nombreClase),
-                claseDao.getHab(nombreClase),
-                claseDao.getVidaMax(nombreClase));
+        Clase clase = claseDao.getClase(nombreClase);
 
         Personaje personaje = new Personaje(
                 new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),

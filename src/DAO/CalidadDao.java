@@ -1,5 +1,9 @@
 package DAO;
 
+import domain.Calidad;
+import domain.Objeto;
+import domain.Personaje;
+
 public interface CalidadDao {
-    int[] getAtributes(String tipo);
+    Calidad getCalidad(String tipo);
 }
