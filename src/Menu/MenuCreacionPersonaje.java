@@ -20,8 +20,30 @@ public class MenuCreacionPersonaje extends Menu{
 
     @Override
     protected void initActions() {
-    }
+        addOption("S", new MenuAction() {
+            @Override
+            public void execute() {
+                Menu menuPersonaje = new MenuPersonaje("\u001B[31m" + "   _____                                                         \n" +
+                        "  /     \\   ____   ____  __ __                                   \n" +
+                        " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +
+                        "/    Y    \\  ___/|   |  \\  |  /                                  \n" +
+                        "\\____|__  /\\___  >___|  /____/                                   \n" +
+                        "        \\/     \\/     \\/                                         \n" + "\u001B[0m" + "\u001B[35m" +
+                        "__________                                             __        \n" +
+                        "\\______   \\ ___________  __________   ____ _____      |__| ____  \n" +
+                        " |     ___// __ \\_  __ \\/  ___/  _ \\ /    \\\\__  \\     |  |/ __ \\ \n" +
+                        " |    |   \\  ___/|  | \\/\\___ (  <_> )   |  \\/ __ \\_   |  \\  ___/ \n" +
+                        " |____|    \\___  >__|  /____  >____/|___|  (____  /\\__|  |\\___  >\n" +
+                        "               \\/           \\/           \\/     \\/\\______|    \\/ " + "\u001B[0m");
+                menuPersonaje.start();
+            }
 
+            @Override
+            public String getOptionName() {
+                return ") Salir";
+            }
+        });
+    }
     @Override
     protected void onPreOptions() {
         Connection con = ClaseSingleton.getConnection();
@@ -49,5 +71,6 @@ public class MenuCreacionPersonaje extends Menu{
             personajeDao.insertNuevoPersonaje(personaje);
             System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
         }
+
     }
 }
