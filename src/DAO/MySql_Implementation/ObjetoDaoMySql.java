@@ -20,6 +20,11 @@ public class ObjetoDaoMySql implements ObjetoDao {
 
     @Override
     public Objeto getAtributes(int objetoID) {
+        return null;
+    }
+
+    @Override
+    public Objeto getObjetoByID(int objetoID) {
         try {
             PreparedStatement getAllStmnt = con.prepareStatement("SELECT * FROM OBJETO WHERE objetoID = ?");
             getAllStmnt.setInt(1, objetoID);

@@ -33,6 +33,7 @@ public class TiendaDaoMySql implements TiendaDao {
             List<Tienda> tienda = new ArrayList<>();
             while (result.next()) {
                 tienda.add(new Tienda(
+                        result.getInt("tiendaID"),
                         result.getInt("objetoID"),
                         result.getInt("personajeID"),
                         result.getInt("precio"))
@@ -44,5 +45,36 @@ public class TiendaDaoMySql implements TiendaDao {
             System.err.println(e);
         }
         return null;
+    }
+
+    @Override
+    public void addObjeto(Tienda tienda) {
+// todo tomar plantilla creacion de personaje
+    }
+
+    @Override
+    public int getObjeto(int tiendaID) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT objetoID FROM TIENDA where tiendaID = ?");
+
+            //Sustitución de los ?
+
+            getAllStmnt.setInt(1, tiendaID);
+            ResultSet result = getAllStmnt.executeQuery();
+
+            //Ejecución y guardado de la info de la query
+
+            if (result.next()) return result.getInt("objetoID");
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public void deleteObjeto(int objetoID) {
+
     }
 }
