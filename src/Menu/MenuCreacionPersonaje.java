@@ -68,32 +68,32 @@ public class MenuCreacionPersonaje extends Menu {
                 respuestaValida = true;
             } else {
                 System.out.println("Introduce un número valido");
+            }
         }
-    }
 
-    Personaje personaje = new Personaje(
-            new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),
-            nombrePersonaje,
-            clase,
-            clase.getVidaMaxima(),
-            1,
-            0,
-            0);
-    PersonajeDao personajeDao = new PersonajeDaoMySql(ClaseSingleton.getConnection());
+        Personaje personaje = new Personaje(
+                new UsuarioDaoMySql(con).getUsuario(ClaseSingleton.getNombreUsuario()),
+                nombrePersonaje,
+                clase,
+                clase.getVidaMaxima(),
+                1,
+                0,
+                0);
+        PersonajeDao personajeDao = new PersonajeDaoMySql(ClaseSingleton.getConnection());
         while(personajeDao.findIfPersonajeExists(nombrePersonaje))
 
-    {
-        nombrePersonaje = Input.readString("El nombre del personaje ya existe, introduce otro. Si has cambiado de idea pulsa intro");
-        if (!nombrePersonaje.equals("")) {
-            personaje.setNombre(nombrePersonaje);
-        } else break;
-    }
+        {
+            nombrePersonaje = Input.readString("El nombre del personaje ya existe, introduce otro. Si has cambiado de idea pulsa intro");
+            if (!nombrePersonaje.equals("")) {
+                personaje.setNombre(nombrePersonaje);
+            } else break;
+        }
         if(!nombrePersonaje.equals(""))
 
-    {
-        personajeDao.insertNuevoPersonaje(personaje);
-        System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
-    }
+        {
+            personajeDao.insertNuevoPersonaje(personaje);
+            System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
+        }
 
-}
+    }
 }

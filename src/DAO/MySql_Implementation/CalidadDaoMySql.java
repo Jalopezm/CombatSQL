@@ -29,7 +29,7 @@ public class CalidadDaoMySql implements CalidadDao {
 
             if (result.next()) {
                 return new Calidad(
-                    result.getString("tipo"),
+                        result.getString("tipo"),
                         result.getFloat("ataque"),
                         result.getFloat("evasion"),
                         result.getFloat("habilidad"),
