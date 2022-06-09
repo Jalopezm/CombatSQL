@@ -51,7 +51,7 @@ public class FichaPersonaje {
         int idPersonaje = personajeDao.getIdPersonaje(personaje);
 
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(idPersonaje);
-        if (inventario != null){
+        if (inventario != null) {
             for (int i = 0; i < inventario.size(); i++) {
                 int objetoID = inventario.get(i).getObjetoID();
                 Objeto objeto = objetoDao.getObjetoByID(objetoID);
@@ -79,48 +79,188 @@ public class FichaPersonaje {
     }
 
     String fichaPicaro() {
-        String ficha = "+------------------------------------+\n";
-        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
-        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
-        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
-        ficha += "|" + "Estadisticas" + "|" + "\n";
-        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
-        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
-        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
-        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
-        ficha += "+------------------------------------+\n";
+        String monedas = reformatMonedas();
+        String nivel = reformatNivel();
+        String vidaActual = reformatVidaActual();
+        String vidaMaxima = reformatVidaMaxima();
+        String ataque = reformatAtaque();
+        String precision = reformatPrecision();
+        String evasion = reformatEvasion();
+        String nombre = reformatNombre();
+
+        String ficha = "\n" + "\u001B[32m" + "+--------------------------------------+" + "\n";
+        ficha += "|" + "                " + this.clase + "                " + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Precision: " + precision + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Evasion: " + evasion + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "+--------------------------------------+\n" + "\u001B[0m";
 
         return ficha;
     }
 
-    private String fichaGuerrero() {
-        String ficha = "+------------------------------------+\n";
-        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
-        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
-        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
-        ficha += "|" + "Estadisticas" + "|" + "\n";
-        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
-        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
-        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
-        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
-        ficha += "+------------------------------------+\n";
+    String fichaGuerrero() {
+        String monedas = reformatMonedas();
+        String nivel = reformatNivel();
+        String vidaActual = reformatVidaActual();
+        String vidaMaxima = reformatVidaMaxima();
+        String ataque = reformatAtaque();
+        String precision = reformatPrecision();
+        String evasion = reformatEvasion();
+        String nombre = reformatNombre();
+        String ficha = "\n" + "\u001B[31m" + "+--------------------------------------+" + "\n";
+        ficha += "|" + "               " + this.clase + "               " + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + "Precision: " + precision + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + "Evasion: " + evasion + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "+--------------------------------------+\n" + "\u001B[0m";
 
         return ficha;
     }
 
-    private String fichaMago() {
-        String ficha = "+------------------------------------+\n";
-        ficha += "|" + "               " + this.clase + "               " + "|" + "\n";
-        ficha += "|" + this.personaje.getNombre() + "nivel" + this.personaje.getNivel() + "                    " + "|" + "\n";
-        ficha += "|" + "Monedas" + this.personaje.getMonedas() + "|" + "\n";
-        ficha += "|" + "Estadisticas" + "|" + "\n";
-        ficha += "|" + "SaludActual" + this.personaje.getSaludActual() +"/"+ this.vidaMaxima+ "|" + "\n";
-        ficha += "|" + "Ataque" + this.ataque + "|" + "\n";
-        ficha += "|" + "Precision" + this.habilidad + "|" + "\n";
-        ficha += "|" + "Evasion" + this.evasion + "|" + "\n";
-        ficha += "+------------------------------------+\n";
+    String fichaMago() {
+        String monedas = reformatMonedas();
+        String nivel = reformatNivel();
+        String vidaActual = reformatVidaActual();
+        String vidaMaxima = reformatVidaMaxima();
+        String ataque = reformatAtaque();
+        String precision = reformatPrecision();
+        String evasion = reformatEvasion();
+        String nombre = reformatNombre();
+
+        String ficha = "\n" + "\u001B[34m" + "+--------------------------------------+" + "\n";
+        ficha += "|" + "                  " + this.clase + "                " + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + "Precision: " + precision + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + "Evasion: " + evasion + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "+--------------------------------------+\n" + "\u001B[0m";
 
         return ficha;
+    }
+
+    private String reformatNombre() {
+        String nombre = "";
+        boolean reintentar = true;
+        while (reintentar) {
+            if (this.personaje.getNombre().length() == 10) {
+                nombre = this.personaje.getNombre() + "               ";
+                reintentar = false;
+            }else if (this.personaje.getNombre().length() == 9) {
+                nombre = this.personaje.getNombre() + "                ";
+                reintentar = false;
+            }else if (this.personaje.getNombre().length() == 8) {
+                nombre = this.personaje.getNombre() + "                  ";
+                reintentar = false;
+            }else if (this.personaje.getNombre().length() == 7) {
+                nombre = this.personaje.getNombre() + "                   ";
+                reintentar = false;
+            }else if (this.personaje.getNombre().length() == 6) {
+                nombre = this.personaje.getNombre() + "                    ";
+                reintentar = false;
+            } else {
+                System.out.println("El Personaje " + this.personaje.getNombre() + " tiene una longitud no deseada");
+                this.personaje.setNombre(Input.readString("Introduce un Nombre entre 6 y 10 Caracteres"));
+                continue;
+            }
+        }
+        return nombre;
+    }
+
+    private String reformatEvasion() {
+        String evasion = String.valueOf(this.evasion);
+        if (this.evasion < 100) {
+            evasion = "0" + this.evasion + "                          ";
+            if (this.evasion < 10) {
+                evasion = "00" + this.evasion + "                         ";
+            }
+        }
+        return evasion;
+    }
+
+    private String reformatPrecision() {
+        String precision = String.valueOf(this.habilidad);
+        if (this.habilidad < 100) {
+            precision = "0" + this.habilidad + "                        ";
+            if (this.habilidad < 10) {
+                precision = "00" + this.habilidad + "                       ";
+            }
+        }
+        return precision;
+    }
+
+    private String reformatAtaque() {
+        String ataque = String.valueOf(this.ataque);
+        if (this.ataque < 100) {
+            ataque = "0" + this.ataque + "                           ";
+            if (this.ataque < 10) {
+                ataque = "00" + this.ataque + "                           ";
+            }
+        }
+        return ataque;
+    }
+
+    private String reformatVidaMaxima() {
+        String vidaMaxima = String.valueOf(this.vidaMaxima);
+        if (this.vidaMaxima < 100) {
+            vidaMaxima = "0" + this.vidaMaxima + "                  ";
+            if (this.vidaMaxima < 10) {
+                vidaMaxima = "00" + this.vidaMaxima + "                 ";
+            }
+        }
+        return vidaMaxima;
+    }
+
+    private String reformatVidaActual() {
+        String vidaActual = String.valueOf(this.personaje.getSaludActual());
+        if (this.personaje.getSaludActual() < 100) {
+            vidaActual = "0" + this.personaje.getSaludActual();
+            if (this.personaje.getSaludActual() < 10) {
+                vidaActual = "00" + this.personaje.getSaludActual();
+            }
+        }
+        return vidaActual;
+    }
+
+    private String reformatNivel() {
+        String nivel = this.personaje.getNivel() + "  ";
+        if (this.personaje.getNivel() < 100) {
+            nivel = this.personaje.getNivel() + "   ";
+            if (this.personaje.getNivel() < 10) {
+                nivel = this.personaje.getNivel() + "  ";
+            }
+        }
+        return nivel;
+    }
+
+    private String reformatMonedas() {
+        String monedas = this.personaje.getMonedas() + "                       ";
+        if (this.personaje.getMonedas() < 100_000) {
+            monedas = this.personaje.getMonedas() + "                         ";
+            if (this.personaje.getMonedas() < 10_000) {
+                monedas = this.personaje.getMonedas() + "                         ";
+                if (this.personaje.getMonedas() < 1000) {
+                    monedas = this.personaje.getMonedas() + "                          ";
+                    if (this.personaje.getMonedas() < 100) {
+                        monedas = this.personaje.getMonedas() + "                           ";
+                        if (this.personaje.getMonedas() < 10) {
+                            monedas = this.personaje.getMonedas() + "                            ";
+                        }
+                    }
+                }
+            }
+        }
+        return monedas;
     }
 
     public int getAtaque() {
