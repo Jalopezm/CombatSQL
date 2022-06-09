@@ -22,7 +22,8 @@ public class MenuTienda extends Menu{
         addOption("2", new MenuAction() {
             @Override
             public void execute() {
-
+                Menu menuVender = new MenuVender("Vender");
+                menuVender.start();
             }
 
             @Override
