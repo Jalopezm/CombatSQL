@@ -10,7 +10,8 @@ public class MenuTienda extends Menu{
         addOption("1", new MenuAction() {
             @Override
             public void execute() {
-
+                Menu menuComprar = new MenuComprar("Comprar");
+                menuComprar.start();
             }
 
             @Override
@@ -29,6 +30,7 @@ public class MenuTienda extends Menu{
                 return ") Vender";
             }
         });
+
     }
 
     @Override
