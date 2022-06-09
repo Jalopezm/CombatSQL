@@ -149,6 +149,7 @@ public class FichaPersonaje {
         return ficha;
     }
 
+
     private String reformatNombre() {
         String nombre = "";
         boolean reintentar = true;
