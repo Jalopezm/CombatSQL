@@ -51,8 +51,25 @@ public class InventarioDaoMySql implements InventarioDao {
         return false;
     }
 
+    // todo Inventario?
+
     @Override
     public boolean deleteObjeto(Inventario inventario) {
+        try{
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("DELETE FROM INVENTARIO where inventarioID = ?");
+
+            getAllStmnt.setInt(1, inventario.getInventarioID());
+
+            //Ejecución y guardado de la info de la query
+            int delete = getAllStmnt.executeUpdate();
+
+            if (delete == 1) return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
@@ -60,6 +77,7 @@ public class InventarioDaoMySql implements InventarioDao {
     public boolean inventarioContainsObjeto(Objeto objeto) {
         return false;
     }
+
 
 
 }

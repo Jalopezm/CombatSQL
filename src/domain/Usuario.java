@@ -1,6 +1,7 @@
 package domain;
 
 public class Usuario {
+    private int usuarioID;
     private String nombre;
     private String apellido;
     private String nombreUsuario;
@@ -13,6 +14,14 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = contraseña;
+    }
+
+    public int getUsuarioID() {
+        return usuarioID;
+    }
+
+    public void setUsuarioID(int usuarioID) {
+        this.usuarioID = usuarioID;
     }
 
     public String getNombre() {

@@ -26,5 +26,13 @@ public class Inventario {
     public void setPersonajeID(int personajeID) {
         this.personajeID = personajeID;
     }
+
+    public int getInventarioID() {
+        return inventarioID;
+    }
+
+    public void setInventarioID(int inventarioID) {
+        this.inventarioID = inventarioID;
+    }
 }
 

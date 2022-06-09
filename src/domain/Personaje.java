@@ -35,6 +35,14 @@ public class Personaje {
         this.usuario = usuario;
     }
 
+    public int getPersonajeID() {
+        return personajeID;
+    }
+
+    public void setPersonajeID(int personajeID) {
+        this.personajeID = personajeID;
+    }
+
     public String getNombre() {
         return nombre;
     }

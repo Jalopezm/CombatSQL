@@ -1,5 +1,6 @@
 package DAO.MySql_Implementation;
 
+import Conection.ClaseSingleton;
 import DAO.TiendaDao;
 import domain.Clase;
 import domain.Objeto;
@@ -48,8 +49,26 @@ public class TiendaDaoMySql implements TiendaDao {
     }
 
     @Override
-    public void addObjeto(Tienda tienda) {
-// todo tomar plantilla creacion de personaje
+    public boolean addObjeto(Tienda tienda) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `TIENDA` " +
+                    "(`objetoID`, `personajeID`, `precio`) VALUES (?, ?, ?);");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, tienda.getObjetoID());
+            getAllStmnt.setInt(2, tienda.getPersonajeID());
+            getAllStmnt.setInt(3, tienda.getPrecio());
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
     }
 
     @Override
