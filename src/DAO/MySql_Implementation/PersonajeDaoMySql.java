@@ -146,8 +146,38 @@ public class PersonajeDaoMySql implements PersonajeDao {
     }
 
     @Override
-    public void takeGold(Tienda tienda) {
+    public boolean takeGold(Tienda tienda) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET MONEDAS = ?");
 
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+            int monedas = personajeDao.getGold(tienda.getPersonajeID());
+            int takemonedas = tienda.getPrecio();
+
+            int total = 0;
+
+            if (takemonedas > monedas) {
+                return false;
+            } else {
+                total = monedas - takemonedas;
+            }
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, total);
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
     }
 
     @Override
