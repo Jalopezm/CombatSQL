@@ -153,7 +153,7 @@ public class FichaPersonaje {
         String nombre = personaje.getNombre();
         int nivelLength = nivel.length();
         int espacios = nombre.length() + nivelLength;
-        for (int i = 0; i < (40 - (espacios + 2)); i++) {
+        for (int i = 0; i < (38 - (espacios)); i++) {
             nombre += " ";
         }
         return nombre;
