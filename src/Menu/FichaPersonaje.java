@@ -151,29 +151,9 @@ public class FichaPersonaje {
 
 
     private String reformatNombre() {
-        String nombre = "";
-        boolean reintentar = true;
-        while (reintentar) {
-            if (this.personaje.getNombre().length() == 10) {
-                nombre = this.personaje.getNombre() + "               ";
-                reintentar = false;
-            }else if (this.personaje.getNombre().length() == 9) {
-                nombre = this.personaje.getNombre() + "                ";
-                reintentar = false;
-            }else if (this.personaje.getNombre().length() == 8) {
-                nombre = this.personaje.getNombre() + "                  ";
-                reintentar = false;
-            }else if (this.personaje.getNombre().length() == 7) {
-                nombre = this.personaje.getNombre() + "                   ";
-                reintentar = false;
-            }else if (this.personaje.getNombre().length() == 6) {
-                nombre = this.personaje.getNombre() + "                    ";
-                reintentar = false;
-            } else {
-                System.out.println("El Personaje " + this.personaje.getNombre() + " tiene una longitud no deseada");
-                this.personaje.setNombre(Input.readString("Introduce un Nombre entre 6 y 10 Caracteres"));
-                continue;
-            }
+        String nombre = personaje.getNombre();
+        for (int i = 0; i < 40-personaje.getNombre().length(); i++) {
+            nombre+=" ";
         }
         return nombre;
     }
