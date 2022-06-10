@@ -16,7 +16,7 @@ public interface PersonajeDao {
 
     boolean addGold(Tienda tienda);
 
-    void takeGold(Tienda tienda);
+    boolean takeGold(Tienda tienda);
 
     int getGold(int personajeID);
 
