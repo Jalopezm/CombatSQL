@@ -36,7 +36,6 @@ public class MenuVender extends Menu {
 
         Inventario seleccionado = inventario.get(indice);
 
-
         int precio = Integer.parseInt(Input.readString("¿A que precio?"));
 
         TiendaDao tiendaDao = new TiendaDaoMySql(con);

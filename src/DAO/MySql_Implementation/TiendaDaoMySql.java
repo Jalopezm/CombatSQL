@@ -128,3 +128,5 @@ public class TiendaDaoMySql implements TiendaDao {
         return false;
     }
 }
+
+   // INSERT INTO `INVENTARIO` (`objetoID`, `personajeID`, `precio`) VALUES (?, ?, ?);
