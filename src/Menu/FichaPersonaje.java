@@ -86,11 +86,11 @@ public class FichaPersonaje {
         String ataque = reformatAtaque();
         String precision = reformatPrecision();
         String evasion = reformatEvasion();
-        String nombre = reformatNombre();
+        String nombre = reformatNombre(nivel);
 
         String ficha = "\n" + "\u001B[32m" + "+--------------------------------------+" + "\n";
         ficha += "|" + "                " + this.clase + "                " + "|" + "\u001B[0m" + "\n";
-        ficha += "\u001B[32m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[32m" + "|" + "\u001B[0m" + nombre + nivel + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -110,10 +110,10 @@ public class FichaPersonaje {
         String ataque = reformatAtaque();
         String precision = reformatPrecision();
         String evasion = reformatEvasion();
-        String nombre = reformatNombre();
+        String nombre = reformatNombre(nivel);
         String ficha = "\n" + "\u001B[31m" + "+--------------------------------------+" + "\n";
         ficha += "|" + "               " + this.clase + "               " + "|" + "\u001B[0m" + "\n";
-        ficha += "\u001B[31m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[31m" + "|" + "\u001B[0m" + nombre + nivel + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[31m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[31m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[31m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[31m" + "|" + "\u001B[0m" + "\n";
@@ -133,11 +133,11 @@ public class FichaPersonaje {
         String ataque = reformatAtaque();
         String precision = reformatPrecision();
         String evasion = reformatEvasion();
-        String nombre = reformatNombre();
+        String nombre = reformatNombre(nivel);
 
         String ficha = "\n" + "\u001B[34m" + "+--------------------------------------+" + "\n";
         ficha += "|" + "                  " + this.clase + "                " + "|" + "\u001B[0m" + "\n";
-        ficha += "\u001B[34m" + "|" + "\u001B[0m" + nombre + "nivel" + ": " + nivel + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
+        ficha += "\u001B[34m" + "|" + "\u001B[0m" + nombre + nivel + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[34m" + "|" + "\u001B[0m" + "\u001B[33m" + "Monedas: " + monedas + "\u001B[0m" + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[34m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[34m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[34m" + "|" + "\u001B[0m" + "\n";
@@ -149,11 +149,12 @@ public class FichaPersonaje {
         return ficha;
     }
 
-
-    private String reformatNombre() {
+    private String reformatNombre(String nivel) {
         String nombre = personaje.getNombre();
-        for (int i = 0; i < 40-personaje.getNombre().length(); i++) {
-            nombre+=" ";
+        int nivelLength = nivel.length();
+        int espacios = nombre.length() + nivelLength;
+        for (int i = 0; i < (40 - (espacios + 2)); i++) {
+            nombre += " ";
         }
         return nombre;
     }
@@ -221,7 +222,7 @@ public class FichaPersonaje {
                 nivel = this.personaje.getNivel() + "  ";
             }
         }
-        return nivel;
+        return "nivel" + ": " + nivel;
     }
 
     private String reformatMonedas() {

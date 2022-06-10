@@ -1,5 +1,10 @@
 package Menu;
 
+import Conection.ClaseSingleton;
+import DAO.MySql_Implementation.PersonajeDaoMySql;
+import domain.Personaje;
+
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class MenuJuego extends Menu{
@@ -37,6 +42,8 @@ public class MenuJuego extends Menu{
 
     @Override
     protected void onPreOptions() {
-
+        Personaje personaje = ClaseSingleton.getPersonaje();
+    FichaPersonaje fichaPersonaje = FichaPersonaje.getValoresFicha(personaje);
+        System.out.println(fichaPersonaje);
     }
 }
