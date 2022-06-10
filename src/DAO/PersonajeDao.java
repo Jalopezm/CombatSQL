@@ -18,7 +18,7 @@ public interface PersonajeDao {
 
     void takeGold(Tienda tienda);
 
-    int getGold(Personaje personaje);
+    int getGold(int personajeID);
 
 
 }
