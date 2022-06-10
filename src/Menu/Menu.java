@@ -1,5 +1,6 @@
 package Menu;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -50,9 +51,9 @@ public abstract class Menu {
     /**
      * This method will be called before printing the menu options
      */
-    protected abstract void onPreOptions();
+    protected abstract void onPreOptions() throws SQLException;
 
-    public void start() {
+    public void start() throws SQLException {
         initActions();
 
         while (running) {

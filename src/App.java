@@ -2,8 +2,10 @@ import Conection.ClaseSingleton;
 import Menu.Menu;
 import Menu.MenuUsuario;
 
+import java.sql.SQLException;
+
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ClaseSingleton con = ClaseSingleton.getInstance();
         Menu menu = new MenuUsuario("" +
                 "    ____  _                            _     __    \n" +

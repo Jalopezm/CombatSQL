@@ -92,16 +92,39 @@ public class TiendaDaoMySql implements TiendaDao {
 
     @Override
     public boolean deleteObjeto(int objetoID) {
+        try{
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("DELETE FROM TIENDA where objetoID = ?");
+
+            getAllStmnt.setInt(1, objetoID);
+
+            //Ejecución y guardado de la info de la query
+            int delete = getAllStmnt.executeUpdate();
+
+            if (delete == 1) return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
     @Override
-    public boolean sellObjeto(Tienda tienda, Inventario inventario) {
-        Connection con = ClaseSingleton.getConnection();
-        TiendaDao tiendaDao = new TiendaDaoMySql(con);
-        InventarioDao inventarioDao = new InventarioDaoMySql(con);
-        tiendaDao.addObjeto(tienda);
-        inventarioDao.deleteObjeto(inventario);
-        return true;
+    public boolean sellObjeto(Tienda tienda, Inventario inventario) throws SQLException {
+        try {
+            Connection con = ClaseSingleton.getConnection();
+            con.setAutoCommit(false);
+            TiendaDao tiendaDao = new TiendaDaoMySql(con);
+            InventarioDao inventarioDao = new InventarioDaoMySql(con);
+            tiendaDao.addObjeto(tienda);
+            inventarioDao.deleteObjeto(inventario);
+            con.commit();
+            return true;
+        }catch (SQLException e) {
+            con.rollback();
+            e.printStackTrace();
+        }
+        return false;
     }
 }

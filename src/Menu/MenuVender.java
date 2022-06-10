@@ -9,6 +9,7 @@ import domain.Inventario;
 import domain.Tienda;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MenuVender extends Menu {
@@ -21,7 +22,7 @@ public class MenuVender extends Menu {
     }
 
     @Override
-    protected void onPreOptions() {
+    protected void onPreOptions() throws SQLException {
         Connection con = ClaseSingleton.getConnection();
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         int personajeID = ClaseSingleton.getPersonaje().getPersonajeID();

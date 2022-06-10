@@ -5,6 +5,7 @@ import DAO.MySql_Implementation.UsuarioDaoMySql;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import Conection.ClaseSingleton;
 import DAO.UsuarioDao;
@@ -20,7 +21,7 @@ public class MenuLogin extends Menu {
     }
 
     @Override
-    protected void onPreOptions() {
+    protected void onPreOptions() throws SQLException {
         Connection con = ClaseSingleton.getConnection();
 
         String nombreUsuario = Input.readString("Introduce el Nombre del Usuario");

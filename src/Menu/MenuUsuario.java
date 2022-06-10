@@ -1,5 +1,7 @@
 package Menu;
 
+import java.sql.SQLException;
+
 public class MenuUsuario extends Menu{
 
     public MenuUsuario(String title) {
@@ -11,7 +13,7 @@ public class MenuUsuario extends Menu{
         //Llamar a la funcion addOption(String inputUser,new MenuAction())
         addOption("1", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 //Que pasa Cuando se pulsa la Opcion
                 //Codigo...
                 Menu menuRegistro = new MenuRegistro("    ____             _      __           \n" +
@@ -31,7 +33,7 @@ public class MenuUsuario extends Menu{
         });
         addOption("2", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
             Menu menuLogin = new MenuLogin("" +
                     "    __                _     \n" +
                     "   / /   ____  ____ _(_)___ \n" +

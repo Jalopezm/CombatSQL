@@ -4,6 +4,7 @@ import domain.Inventario;
 import domain.Objeto;
 import domain.Tienda;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface TiendaDao {
@@ -11,5 +12,5 @@ public interface TiendaDao {
     boolean addObjeto(Tienda tienda);
     int getObjeto(int tiendaID);
     boolean deleteObjeto(int objetoID);
-    boolean sellObjeto(Tienda tienda, Inventario inventario);
+    boolean sellObjeto(Tienda tienda, Inventario inventario) throws SQLException;
 }

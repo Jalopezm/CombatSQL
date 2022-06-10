@@ -11,6 +11,7 @@ import domain.Clase;
 import domain.Personaje;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class MenuCreacionPersonaje extends Menu {
 
@@ -22,7 +23,7 @@ public class MenuCreacionPersonaje extends Menu {
     protected void initActions() {
         addOption("S", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu menuPersonaje = new MenuPersonaje("\u001B[31m" + "   _____                                                         \n" +
                         "  /     \\   ____   ____  __ __                                   \n" +
                         " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +

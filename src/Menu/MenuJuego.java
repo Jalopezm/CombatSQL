@@ -1,5 +1,7 @@
 package Menu;
 
+import java.sql.SQLException;
+
 public class MenuJuego extends Menu{
     public MenuJuego(String title) {
         super(title);
@@ -9,7 +11,7 @@ public class MenuJuego extends Menu{
     protected void initActions() {
         addOption("1", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu menuTienda = new MenuTienda("tienda");
                 menuTienda.start();
             }
@@ -21,7 +23,7 @@ public class MenuJuego extends Menu{
         });
         addOption("2", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu menuCombate = new MenuCombate("Combate");
                 menuCombate.start();
             }

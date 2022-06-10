@@ -4,6 +4,8 @@ import Conection.ClaseSingleton;
 import DAO.MySql_Implementation.PersonajeDaoMySql;
 import DAO.PersonajeDao;
 import domain.Personaje;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public class MenuSeleccionPersonaje extends Menu{
@@ -19,7 +21,7 @@ public class MenuSeleccionPersonaje extends Menu{
             final int idx = i;
             addOption(String.valueOf(i), new MenuAction() {
                 @Override
-                public void execute() {
+                public void execute() throws SQLException {
                     ClaseSingleton.setPersonaje(personajes.get(idx));
                     MenuJuego menuJuego = new MenuJuego("Elige una opción");
                     menuJuego.start();
@@ -34,7 +36,7 @@ public class MenuSeleccionPersonaje extends Menu{
 
         addOption("S", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu menuPersonaje = new MenuPersonaje("\u001B[31m"+"   _____                                                         \n" +
                         "  /     \\   ____   ____  __ __                                   \n" +
                         " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +

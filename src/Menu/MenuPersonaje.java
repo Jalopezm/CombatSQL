@@ -1,5 +1,7 @@
 package Menu;
 
+import java.sql.SQLException;
+
 public class MenuPersonaje extends Menu{
 
     public MenuPersonaje(String title) {
@@ -10,7 +12,7 @@ public class MenuPersonaje extends Menu{
     protected void initActions() {
         addOption("1", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu crearPersonaje = new MenuCreacionPersonaje("Crear personaje");
 
                 crearPersonaje.start();
@@ -24,7 +26,7 @@ public class MenuPersonaje extends Menu{
 
         addOption("2", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                 Menu seleccionPersonaje = new MenuSeleccionPersonaje("Selecciona personaje");
                 seleccionPersonaje.start();
             }
@@ -36,7 +38,7 @@ public class MenuPersonaje extends Menu{
         });
         addOption("S", new MenuAction() {
             @Override
-            public void execute() {
+            public void execute() throws SQLException {
                MenuUsuario menuUsuario = new MenuUsuario("" +
                        "    ____  _                            _     __    \n" +
                        "   / __ )(_)__  ____ _   _____  ____  (_)___/ /___ \n" +
