@@ -2,10 +2,7 @@ package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
 import DAO.PersonajeDao;
-import domain.Calidad;
-import domain.Clase;
-import domain.Objeto;
-import domain.Personaje;
+import domain.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -116,6 +113,56 @@ public class PersonajeDaoMySql implements PersonajeDao {
         } catch (SQLException e) {
             System.err.println(e);
 
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean addGold(Tienda tienda) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT MONEDAS FROM PERSONAJE where personajeID = ?");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, tienda.getObjetoID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public void takeGold(Tienda tienda) {
+
+    }
+
+    @Override
+    public int getGold(Personaje personaje) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT monedas FROM PERSONAJE where personajeID = ?");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, personaje.getPersonajeID());
+
+
+            //Ejecución y guardado de la info de la query
+            ResultSet result = getAllStmnt.executeQuery();
+
+            if (result.next()) {
+                return result.getInt("monedas");
+            }
+
+
+        } catch (SQLException e) {
+            System.err.println(e);
         }
         return 0;
     }
