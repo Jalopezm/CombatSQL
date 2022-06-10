@@ -106,7 +106,6 @@ public class TiendaDaoMySql implements TiendaDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -127,6 +126,9 @@ public class TiendaDaoMySql implements TiendaDao {
         }
         return false;
     }
-}
 
-   // INSERT INTO `INVENTARIO` (`objetoID`, `personajeID`, `precio`) VALUES (?, ?, ?);
+    @Override
+    public boolean buyObjeto(Tienda tienda) {
+        return false;
+    }
+}
