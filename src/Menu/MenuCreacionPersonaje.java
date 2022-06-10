@@ -50,7 +50,7 @@ public class MenuCreacionPersonaje extends Menu {
     protected void onPreOptions() {
         Connection con = ClaseSingleton.getConnection();
         String nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
-        while (nombrePersonaje.length() > 12 && nombrePersonaje.length() < 1) {
+        while (nombrePersonaje.length() > 12 || nombrePersonaje.length() < 1) {
             nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
         }
             ClaseDao claseDao = new ClaseDaoMySql(con);
