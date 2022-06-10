@@ -129,6 +129,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
             int addmonedas = tienda.getPrecio();
             int total = monedas + addmonedas;
 
+
             //Sustitución de los ?
             getAllStmnt.setInt(1, total);
 

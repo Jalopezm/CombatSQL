@@ -21,4 +21,5 @@ public interface PersonajeDao {
     int getGold(int personajeID);
 
 
+
 }
