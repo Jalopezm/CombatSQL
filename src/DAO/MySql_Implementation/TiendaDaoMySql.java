@@ -1,11 +1,9 @@
 package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
+import DAO.InventarioDao;
 import DAO.TiendaDao;
-import domain.Clase;
-import domain.Objeto;
-import domain.Personaje;
-import domain.Tienda;
+import domain.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,7 +91,17 @@ public class TiendaDaoMySql implements TiendaDao {
     }
 
     @Override
-    public void deleteObjeto(int objetoID) {
+    public boolean deleteObjeto(int objetoID) {
+        return false;
+    }
 
+    @Override
+    public boolean sellObjeto(Tienda tienda, Inventario inventario) {
+        Connection con = ClaseSingleton.getConnection();
+        TiendaDao tiendaDao = new TiendaDaoMySql(con);
+        InventarioDao inventarioDao = new InventarioDaoMySql(con);
+        tiendaDao.addObjeto(tienda);
+        inventarioDao.deleteObjeto(inventario);
+        return true;
     }
 }

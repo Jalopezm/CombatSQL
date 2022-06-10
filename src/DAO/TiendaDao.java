@@ -1,5 +1,6 @@
 package DAO;
 
+import domain.Inventario;
 import domain.Objeto;
 import domain.Tienda;
 
@@ -9,6 +10,6 @@ public interface TiendaDao {
     List<Tienda> showTienda();
     boolean addObjeto(Tienda tienda);
     int getObjeto(int tiendaID);
-    void deleteObjeto(int objetoID);
-
+    boolean deleteObjeto(int objetoID);
+    boolean sellObjeto(Tienda tienda, Inventario inventario);
 }

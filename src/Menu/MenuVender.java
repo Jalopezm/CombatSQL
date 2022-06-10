@@ -39,9 +39,10 @@ public class MenuVender extends Menu {
         int precio = Integer.parseInt(Input.readString("¿A que precio?"));
 
         TiendaDao tiendaDao = new TiendaDaoMySql(con);
-        tiendaDao.addObjeto(new Tienda(seleccionado.getObjetoID(), personajeID, precio));
 
-        inventarioDao.deleteObjeto(seleccionado);
+        if (tiendaDao.sellObjeto(new Tienda(seleccionado.getObjetoID(), personajeID, precio),seleccionado)){
+            System.out.println("Objeto puesto con exito a la venta. Cuando se venda recibirás tu dinero-");
+        }
 
     }
 }
