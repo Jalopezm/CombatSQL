@@ -13,4 +13,5 @@ public interface TiendaDao {
     int getObjeto(int tiendaID);
     boolean deleteObjeto(int objetoID);
     boolean sellObjeto(Tienda tienda, Inventario inventario) throws SQLException;
+    boolean buyObjeto(Tienda tienda);
 }
