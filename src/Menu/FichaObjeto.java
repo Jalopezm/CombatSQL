@@ -42,4 +42,5 @@ public class FichaObjeto {
        String calidad = objeto.getTipo().getTipo();
         return new FichaObjeto(ataque, habilidad, vidaMaxima, evasion, calidad);
     }
+
 }
