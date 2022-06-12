@@ -121,7 +121,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
     public boolean addGold(Tienda tienda) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET MONEDAS = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET MONEDAS = ? where personajeID = ?");
 
             PersonajeDao personajeDao = new PersonajeDaoMySql(con);
 
@@ -132,6 +132,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             //Sustitución de los ?
             getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, tienda.getPersonajeID());
 
 
             //Ejecución y verificación del funcionamiento de la query
@@ -146,10 +147,10 @@ public class PersonajeDaoMySql implements PersonajeDao {
     }
 
     @Override
-    public boolean takeGold(Tienda tienda) {
+    public boolean takeGold(Tienda tienda, Personaje personaje) {
         try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET MONEDAS = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET MONEDAS = ? where personajeID = ?");
 
             PersonajeDao personajeDao = new PersonajeDaoMySql(con);
 
@@ -167,6 +168,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             //Sustitución de los ?
             getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
 
 
             //Ejecución y verificación del funcionamiento de la query

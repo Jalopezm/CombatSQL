@@ -10,6 +10,7 @@ import domain.Objeto;
 import domain.Personaje;
 import domain.Tienda;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class MenuComprar extends Menu{
@@ -22,19 +23,28 @@ public class MenuComprar extends Menu{
     }
 
     @Override
-    protected void onPreOptions() {
+    protected void onPreOptions() throws SQLException {
         TiendaDao tiendaDao = new TiendaDaoMySql(ClaseSingleton.getConnection());
         List<Tienda> tienda = tiendaDao.showTienda();
-        for (Tienda itemTienda : tienda) {
-            System.out.println(itemTienda);
+        if (tienda.size() == 0){
+            Input.readString("No hay articulos a la venta, vuelve más tarde. Pulsa intro para continuar.");
         }
+        else {
+            for (Tienda itemTienda : tienda) {
+                System.out.println(itemTienda);
+            }
 
-        int indice = Integer.parseInt(Input.readString("Introduce un objeto"));
+            int indice = Integer.parseInt(Input.readString("Introduce un objeto:"));
+            while (indice > tienda.size()) {
+                indice = Integer.parseInt(Input.readString("Valor no valido, introduce otro."));
+            }
+            Tienda seleccionado = tienda.get(indice);
 
-        Tienda seleccionado = tienda.get(indice);
-
-        if(tiendaDao.buyObjeto(seleccionado)){
-            System.out.println("Se ha añadido el objeto a tu inventario.");
+            if(tiendaDao.buyObjeto(seleccionado)){
+                Input.readString("Se ha añadido el objeto a tu inventario. Pulsa intro para continuar.");
+            }
         }
+        Menu menuTienda = new MenuTienda("");
+        menuTienda.start();
     }
 }

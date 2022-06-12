@@ -2,7 +2,10 @@ package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
 import DAO.InventarioDao;
+import DAO.ObjetoDao;
+import DAO.PersonajeDao;
 import DAO.TiendaDao;
+import Menu.Input;
 import domain.*;
 
 import java.sql.Connection;
@@ -91,12 +94,12 @@ public class TiendaDaoMySql implements TiendaDao {
     }
 
     @Override
-    public boolean deleteObjeto(int objetoID) {
-        try{
+    public boolean deleteObjeto(Tienda tienda) {
+        try {
             //Preparación de la consulta
-            PreparedStatement getAllStmnt = con.prepareStatement("DELETE FROM TIENDA where objetoID = ?");
+            PreparedStatement getAllStmnt = con.prepareStatement("DELETE FROM TIENDA where tiendaID = ?");
 
-            getAllStmnt.setInt(1, objetoID);
+            getAllStmnt.setInt(1, tienda.getTiendaID());
 
             //Ejecución y guardado de la info de la query
             int delete = getAllStmnt.executeUpdate();
@@ -113,14 +116,19 @@ public class TiendaDaoMySql implements TiendaDao {
     public boolean sellObjeto(Tienda tienda, Inventario inventario) throws SQLException {
         try {
             Connection con = ClaseSingleton.getConnection();
+
             con.setAutoCommit(false);
+
             TiendaDao tiendaDao = new TiendaDaoMySql(con);
             InventarioDao inventarioDao = new InventarioDaoMySql(con);
+
             tiendaDao.addObjeto(tienda);
             inventarioDao.deleteObjeto(inventario);
+
             con.commit();
+
             return true;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             con.rollback();
             e.printStackTrace();
         }
@@ -129,6 +137,37 @@ public class TiendaDaoMySql implements TiendaDao {
 
     @Override
     public boolean buyObjeto(Tienda tienda) {
+        try {
+            Connection con = ClaseSingleton.getConnection();
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+            InventarioDao inventarioDao = new InventarioDaoMySql(con);
+            ObjetoDao objetoDao = new ObjetoDaoMySql(con);
+            Personaje comprador = ClaseSingleton.getPersonaje();
+            Objeto objeto = objetoDao.getObjetoByID(tienda.getObjetoID());
+            TiendaDao tiendaDao = new TiendaDaoMySql(con);
+
+            int oroActual = personajeDao.getGold(comprador.getPersonajeID());
+
+            if (oroActual < tienda.getPrecio()) {
+                Input.readString("No tienes suficiente dinero. Pulsa intro para continuar.");
+                return false;
+            }
+
+            con.setAutoCommit(false);
+
+            personajeDao.takeGold(tienda, comprador);
+
+            inventarioDao.addObjecto(objeto, comprador);
+
+            tiendaDao.deleteObjeto(tienda);
+
+            personajeDao.addGold(tienda);
+
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

@@ -27,22 +27,28 @@ public class MenuVender extends Menu {
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         int personajeID = ClaseSingleton.getPersonaje().getPersonajeID();
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeID);
-        for (Inventario objetoInventario : inventario) {
-            System.out.println(objetoInventario);
+        if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar.");
+        else {
+            for (Inventario objetoInventario : inventario) {
+                System.out.println(objetoInventario);
+            }
+
+            int indice = Integer.parseInt(Input.readString("Introduce un objeto"));
+            while (indice > inventario.size()) {
+                indice = Integer.parseInt(Input.readString("Valor no valido, introduce otro."));
+            }
+
+            Inventario seleccionado = inventario.get(indice);
+
+            int precio = Integer.parseInt(Input.readString("¿A que precio?"));
+
+            TiendaDao tiendaDao = new TiendaDaoMySql(con);
+
+            if (tiendaDao.sellObjeto(new Tienda(seleccionado.getObjetoID(), personajeID, precio), seleccionado)) {
+                Input.readString("Objeto puesto con exito a la venta. Cuando se venda recibirás tu dinero. Pulsa Intro para continuar.");
+            }
         }
-//       todo while
-
-        int indice = Integer.parseInt(Input.readString("Introduce un objeto"));
-
-        Inventario seleccionado = inventario.get(indice);
-
-        int precio = Integer.parseInt(Input.readString("¿A que precio?"));
-
-        TiendaDao tiendaDao = new TiendaDaoMySql(con);
-
-        if (tiendaDao.sellObjeto(new Tienda(seleccionado.getObjetoID(), personajeID, precio),seleccionado)){
-            System.out.println("Objeto puesto con exito a la venta. Cuando se venda recibirás tu dinero-");
-        }
-
+        Menu menuTienda = new MenuTienda("");
+        menuTienda.start();
     }
 }

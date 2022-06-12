@@ -47,11 +47,26 @@ public class InventarioDaoMySql implements InventarioDao {
 
 
     @Override
-    public boolean addObjecto(Objeto objeto) {
+    public boolean addObjecto(Objeto objeto, Personaje personaje) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("INSERT INTO `INVENTARIO` " +
+                    "(`objetoID`, `personajeID`) VALUES (?, ?);");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, objeto.getObjetoID());
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
         return false;
     }
-
-    // todo Inventario?
 
     @Override
     public boolean deleteObjeto(Inventario inventario) {
