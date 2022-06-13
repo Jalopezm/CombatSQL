@@ -60,6 +60,7 @@ public class MenuLogin extends Menu {
 
         } else {
             System.out.println("Acceso autorizado. Bienvenido " + nombreUsuario + "!");
+            Input.readString("Pulsa intro para continuar...");
             ClaseSingleton.setNombreUsuario(nombreUsuario);
 
             Menu menuPersonaje = new MenuPersonaje("\u001B[31m" + "   _____                                                         \n" +
