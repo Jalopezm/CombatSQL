@@ -11,6 +11,7 @@ import domain.Tienda;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 public class MenuVender extends Menu {
     public MenuVender(String title) {
@@ -27,7 +28,9 @@ public class MenuVender extends Menu {
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         int personajeID = ClaseSingleton.getPersonaje().getPersonajeID();
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeID);
-        if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar.");
+        Menu menuTienda = new MenuTienda("");
+
+        if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar");
         else {
             for (int i = 0; i < inventario.size() ; i++) {
                 final int idx = i;
@@ -43,13 +46,15 @@ public class MenuVender extends Menu {
                     }
                 });
             }
-
-            int indice = Integer.parseInt(Input.readString("Introduce un objeto"));
-            while (indice > inventario.size()) {
-                indice = Integer.parseInt(Input.readString("Valor no valido, introduce otro."));
+            String indice = Input.readString("Introduce un objeto");
+            if (Objects.equals(indice, "")){
+                menuTienda.start();
+            }
+            while (Integer.parseInt(indice) > inventario.size()) {
+                indice = Input.readString("Valor no valido, introduce otro");
             }
 
-            Inventario seleccionado = inventario.get(indice);
+            Inventario seleccionado = inventario.get(Integer.parseInt(indice));
 
             int precio = Integer.parseInt(Input.readString("¿A que precio?"));
 
@@ -59,7 +64,7 @@ public class MenuVender extends Menu {
                 Input.readString("Objeto puesto con exito a la venta. Cuando se venda recibirás tu dinero. Pulsa Intro para continuar.");
             }
         }
-        Menu menuTienda = new MenuTienda("");
+
         menuTienda.start();
     }
 }
