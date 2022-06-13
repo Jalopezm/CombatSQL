@@ -29,8 +29,19 @@ public class MenuVender extends Menu {
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeID);
         if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar.");
         else {
-            for (Inventario objetoInventario : inventario) {
-                System.out.println(objetoInventario);
+            for (int i = 0; i < inventario.size() ; i++) {
+                final int idx = i;
+                addOption(String.valueOf(i), new MenuAction() {
+                    @Override
+                    public void execute() throws SQLException {
+                    }
+
+                    @Override
+                    public String getOptionName() {
+                        return FichaObjeto.getValoresFicha(inventario.get(idx).getObjetoID()).toString();
+
+                    }
+                });
             }
 
             int indice = Integer.parseInt(Input.readString("Introduce un objeto"));

@@ -34,5 +34,6 @@ public class Inventario {
     public void setInventarioID(int inventarioID) {
         this.inventarioID = inventarioID;
     }
+
 }
 
