@@ -43,7 +43,6 @@ public class FichaPersonaje {
 
         int ataque = personaje.getClase().getAtaque();
         int habilidad = personaje.getClase().getHabilidad();
-        int vidaActual = personaje.getSaludActual();
         int vidaMaxima = personaje.getClase().getVidaMaxima();
         int evasion = personaje.getClase().getEvasion();
         String clase = personaje.getClase().getNombre();
