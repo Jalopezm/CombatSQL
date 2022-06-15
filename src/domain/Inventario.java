@@ -35,5 +35,6 @@ public class Inventario {
         this.inventarioID = inventarioID;
     }
 
+
 }
 

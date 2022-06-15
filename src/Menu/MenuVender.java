@@ -31,20 +31,12 @@ public class MenuVender extends Menu {
         Menu menuTienda = new MenuTienda("");
 
         if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar");
+
         else {
             for (int i = 0; i < inventario.size() ; i++) {
                 final int idx = i;
-                addOption(String.valueOf(i), new MenuAction() {
-                    @Override
-                    public void execute() throws SQLException {
-                    }
-
-                    @Override
-                    public String getOptionName() {
-                        return FichaObjeto.getValoresFicha(inventario.get(idx).getObjetoID()).toString();
-
-                    }
-                });
+                int  indiceObjeto = inventario.get(idx).getObjetoID();
+                System.out.println(FichaObjeto.getValoresFicha(indiceObjeto).toString());
             }
             String indice = Input.readString("Introduce un objeto");
             if (Objects.equals(indice, "")){

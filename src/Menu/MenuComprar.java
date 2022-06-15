@@ -11,6 +11,7 @@ import domain.Personaje;
 import domain.Tienda;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,8 +33,10 @@ public class MenuComprar extends Menu{
             Input.readString("No hay articulos a la venta, vuelve más tarde. Pulsa intro para continuar.");
         }
         else {
-            for (Tienda itemTienda : tienda) {
-                System.out.println(itemTienda);
+            for (int i = 0; i < tienda.size() ; i++) {
+                final int idx = i;
+                int  indiceObjeto = tienda.get(idx).getObjetoID();
+                System.out.println(FichaObjeto.getValoresFicha(indiceObjeto).toString());
             }
 
             String indice = Input.readString("Introduce un objeto. Pulsa intro sin introducir nada para salir.");

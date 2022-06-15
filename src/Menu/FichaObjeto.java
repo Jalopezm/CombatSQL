@@ -54,35 +54,36 @@ public class FichaObjeto {
     }
 
     private String fichaBendecido() {
-        String ficha = "+---------------------------------------+";
-        ficha += "|                 "+this.nombre+this.calidad+"                |";
-        ficha += "| Vida : "+this.vida+"                     |";
-        ficha += "| Ataque : "+this.ataque+"                     |";
-        ficha += "| Evasion : "+this.evasion+"                     |";
-        ficha += "| Habilidad : "+this.habilidad+"                     |";
-        ficha += "+---------------------------------------+";
+        String ficha = "\u001B[33m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
+        ficha += "\u001B[33m"+"|          "+this.nombre+" "+this.calidad+"          |"+"\n";
+        ficha += "\u001B[33m"+"|"+"\u001B[0m"+" Vida : "+"\u001B[0m"+this.vida+"\u001B[33m"+"                               |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[33m"+"|"+"\u001B[0m"+" Ataque : "+"\u001B[0m"+this.ataque+"\u001B[33m"+"                            |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[33m"+"|"+"\u001B[0m"+" Evasion : "+"\u001B[0m"+this.evasion+"\u001B[33m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[33m"+"|"+"\u001B[0m"+" Habilidad : "+"\u001B[0m"+this.habilidad+"\u001B[33m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[33m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
         return ficha;
     }
 
     private String fichaEpico() {
-        String ficha = "+---------------------------------------+";
-        ficha += "|                 "+this.nombre+this.calidad+"                |";
-        ficha += "| Vida : "+this.vida+"                     |";
-        ficha += "| Ataque : "+this.ataque+"                     |";
-        ficha += "| Evasion : "+this.evasion+"                     |";
-        ficha += "| Habilidad : "+this.habilidad+"                     |";
-        ficha += "+---------------------------------------+";
+        String ficha = "\u001B[35m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
+        ficha += "\u001B[35m"+"|          "+this.nombre+" "+this.calidad+"          |"+"\n";
+        ficha += "\u001B[35m"+"|"+"\u001B[0m"+" Vida : "+"\u001B[0m"+this.vida+"\u001B[35m"+"                               |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[35m"+"|"+"\u001B[0m"+" Ataque : "+"\u001B[0m"+this.ataque+"\u001B[35m"+"                            |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[35m"+"|"+"\u001B[0m"+" Evasion : "+"\u001B[0m"+this.evasion+"\u001B[35m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[35m"+"|"+"\u001B[0m"+" Habilidad : "+"\u001B[0m"+this.habilidad+"\u001B[35m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[35m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
         return ficha;
     }
 
     private String fichaNormal() {
-        String ficha = "+---------------------------------------+";
-        ficha += "|                 "+this.nombre+this.calidad+"                |";
-        ficha += "| Vida : "+this.vida+"                     |";
-        ficha += "| Ataque : "+this.ataque+"                     |";
-        ficha += "| Evasion : "+this.evasion+"                     |";
-        ficha += "| Habilidad : "+this.habilidad+"                     |";
-        ficha += "+---------------------------------------+";
+        String ficha = "\u001B[37m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
+        ficha += "\u001B[37m"+"|          "+this.nombre+" "+this.calidad+"          |"+"\n";
+        ficha += "\u001B[37m"+"|"+"\u001B[0m"+" Vida : "+"\u001B[0m"+this.vida+"\u001B[37m"+"                               |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[37m"+"|"+"\u001B[0m"+" Ataque : "+"\u001B[0m"+this.ataque+"\u001B[37m"+"                            |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[37m"+"|"+"\u001B[0m"+" Evasion : "+"\u001B[0m"+this.evasion+"\u001B[37m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[37m"+"|"+"\u001B[0m"+" Habilidad : "+"\u001B[0m"+this.habilidad+"\u001B[37m"+"                         |"+"\u001B[0m"+"\n";
+        ficha += "\u001B[37m"+"+---------------------------------------+"+"\u001B[0m"+"\n";
         return ficha;
     }
+
 }
