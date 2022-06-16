@@ -120,11 +120,11 @@ public class EnemigoDaoMySql implements EnemigoDao {
 
         PersonajeDaoMySql pj = new PersonajeDaoMySql(con);
 
-//        pj.addGold(monedas);
+        pj.addGold(monedas);
     }
 
     @Override
-    public Objeto dropObjeto(Objeto objeto) {
+    public Objeto dropObjeto() {
 
         ObjetoDao objetoDao = new ObjetoDaoMySql(con);
         List<Objeto> objetosList = objetoDao.getAllObjetos();
@@ -134,9 +134,7 @@ public class EnemigoDaoMySql implements EnemigoDao {
 
         int objetoID = rd.nextInt(1,totalObjetos);
 
-        ObjetoDaoMySql dropObjeto = new ObjetoDaoMySql(con);
-
-        return dropObjeto.getObjetoByID(objetoID);
+        return objetoDao.getObjetoByID(objetoID);
 
     }
 }

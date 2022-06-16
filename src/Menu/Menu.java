@@ -43,7 +43,7 @@ public abstract class Menu {
     /**
      * Override this method adding the corresponding menu options
      */
-    protected abstract void initActions();
+    protected abstract void initActions() throws SQLException;
 
     /**
      * This method will be called before printing the menu options
