@@ -1,6 +1,8 @@
 package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
+import DAO.InventarioDao;
+import DAO.ObjetoDao;
 import DAO.PersonajeDao;
 import domain.*;
 
@@ -205,4 +207,201 @@ public class PersonajeDaoMySql implements PersonajeDao {
         }
         return 0;
     }
+
+    @Override
+    public int getHealth(int personajeID) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT saludActual FROM PERSONAJE where personajeID = ?");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1,personajeID);
+
+
+            //Ejecución y guardado de la info de la query
+            ResultSet result = getAllStmnt.executeQuery();
+
+            if (result.next()) {
+                return result.getInt("saludActual");
+            }
+
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean heal(Personaje personaje, int curar) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET saludActual = ? where personajeID = ?");
+
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+            int salud = personajeDao.getHealth(personaje.getPersonajeID());
+            int curarPuntos = curar;
+            int total = salud + curarPuntos;
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean takeHealth(Personaje personaje, int herir) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET saludActual = ? where personajeID = ?");
+
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+            int salud = personajeDao.getHealth(personaje.getPersonajeID());
+            int restarPuntos = herir;
+            int total = salud - restarPuntos;
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public int getExperience(int personajeID) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("SELECT experiencia FROM PERSONAJE where personajeID = ?");
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, personajeID);
+
+
+            //Ejecución y guardado de la info de la query
+            ResultSet result = getAllStmnt.executeQuery();
+
+            if (result.next()) {
+                return result.getInt("experiencia");
+            }
+
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean addExperience(Personaje personaje, int sumarExperiencia) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET experiencia = ? where personajeID = ?");
+
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+            int experiencia = personajeDao.getExperience(personaje.getPersonajeID());
+            int addExperiencia = sumarExperiencia;
+            int total = experiencia + addExperiencia;
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addLevel(Personaje personaje) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET nivel = ? where personajeID = ?");
+
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+            int nivel = personajeDao.getGold(personaje.getPersonajeID());
+
+            int total = nivel +=1;
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            // TODO revisar
+
+            PreparedStatement setVidaMaximaStmnt = con.prepareStatement("UPDATE PERSONAJE SET saludActual = ? where personajeID = ?");
+
+            int saludMax = getVidaMaxima(personaje);
+
+            setVidaMaximaStmnt.setInt(1, saludMax);
+            setVidaMaximaStmnt.setInt(2, personaje.getPersonajeID());
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
+    @Override
+    public int getVidaMaxima(Personaje personaje) {
+
+        Connection con = ClaseSingleton.getConnection();
+        InventarioDao inventarioDao = new InventarioDaoMySql(con);
+        ObjetoDao objetoDao = new ObjetoDaoMySql(con);
+
+        int vidaMaxima = personaje.getClase().getVidaMaxima();
+
+        int idPersonaje = personaje.getPersonajeID();
+
+        List<Inventario> inventario = inventarioDao.getPersonajeInventario(idPersonaje);
+        if (inventario != null) {
+            for (int i = 0; i < inventario.size(); i++) {
+                int objetoID = inventario.get(i).getObjetoID();
+                Objeto objeto = objetoDao.getObjetoByID(objetoID);
+                vidaMaxima += objeto.getModSalud() * objeto.getTipo().getModSalud();
+            }
+        }
+        return vidaMaxima;
+    }
+
+
 }

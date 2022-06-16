@@ -1,5 +1,6 @@
 package DAO;
 
+import domain.Inventario;
 import domain.Personaje;
 import domain.Tienda;
 
@@ -20,6 +21,19 @@ public interface PersonajeDao {
 
     int getGold(int personajeID);
 
+    int getHealth(int personajeID);
+
+    boolean heal(Personaje personaje, int curar);
+
+    boolean takeHealth(Personaje personaje, int herir);
+
+    int getExperience(int PersonajeID);
+
+    boolean addExperience(Personaje personaje, int sumarExperiencia);
+
+    boolean addLevel(Personaje personaje);
+
+    int getVidaMaxima(Personaje personaje);
 
 
 }
