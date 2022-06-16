@@ -351,13 +351,12 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             PersonajeDao personajeDao = new PersonajeDaoMySql(con);
 
-            int nivel = personajeDao.getGold(personaje.getPersonajeID());
-
-            int total = nivel +=1;
+            int nivel = personaje.getNivel();
+            nivel ++;
 
 
             //Sustitución de los ?
-            getAllStmnt.setInt(1, total);
+            getAllStmnt.setInt(1, nivel);
             getAllStmnt.setInt(2, personaje.getPersonajeID());
 
 

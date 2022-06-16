@@ -6,6 +6,8 @@ import domain.Personaje;
 
 import java.sql.Connection;
 
+import java.sql.Connection;
+
 public class MenuCombate extends Menu{
     public MenuCombate(String title) {
         super(title);
