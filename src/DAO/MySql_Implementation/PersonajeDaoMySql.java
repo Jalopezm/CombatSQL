@@ -156,7 +156,7 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
             PersonajeDao personajeDao = new PersonajeDaoMySql(con);
 
-            int monedas = personajeDao.getGold(tienda.getPersonajeID());
+            int monedas = personajeDao.getGold(personaje.getPersonajeID());
             int takemonedas = tienda.getPrecio();
 
             int total = 0;
