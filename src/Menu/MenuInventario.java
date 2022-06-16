@@ -23,7 +23,16 @@ import java.util.List;
             InventarioDao inventarioDao = new InventarioDaoMySql(con);
             int personajeID = ClaseSingleton.getPersonaje().getPersonajeID();
             List<Inventario> inventario = inventarioDao.getPersonajeInventario(personajeID);
-            Menu menuTienda = new MenuTienda("");
+            Menu menuTienda = new MenuTienda("\n" +
+                    "__________________ _______  _        ______   _______ \n" +
+                    "\\__   __/\\__   __/(  ____ \\( (    /|(  __  \\ (  ___  )\n" +
+                    "   ) (      ) (   | (    \\/|  \\  ( || (  \\  )| (   ) |\n" +
+                    "   | |      | |   | (__    |   \\ | || |   ) || (___) |\n" +
+                    "   | |      | |   |  __)   | (\\ \\) || |   | ||  ___  |\n" +
+                    "   | |      | |   | (      | | \\   || |   ) || (   ) |\n" +
+                    "   | |   ___) (___| (____/\\| )  \\  || (__/  )| )   ( |\n" +
+                    "   )_(   \\_______/(_______/|/    )_)(______/ |/     \\|\n" +
+                    "                                                      ");
 
             if (inventario.size() == 0) Input.readString("Tu inventario esta vacio. Pulsa intro para continuar");
 

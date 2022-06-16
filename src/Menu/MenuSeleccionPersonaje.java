@@ -23,7 +23,12 @@ public class MenuSeleccionPersonaje extends Menu{
                 @Override
                 public void execute() throws SQLException {
                     ClaseSingleton.setPersonaje(personajes.get(idx));
-                    MenuJuego menuJuego = new MenuJuego("Elige una opción");
+                    MenuJuego menuJuego = new MenuJuego("                                                               \n" +
+                            " _____ _ _            _____            _____         _         \n" +
+                            "|   __| |_|___ ___   |  |  |___ ___   |     |___ ___|_|___ ___ \n" +
+                            "|   __| | | . | -_|  |  |  |   | .'|  |  |  | . |  _| | . |   |\n" +
+                            "|_____|_|_|_  |___|  |_____|_|_|__,|  |_____|  _|___|_|___|_|_|\n" +
+                            "          |___|                             |_|                ");
                     menuJuego.start();
                 }
 

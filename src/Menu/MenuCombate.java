@@ -20,7 +20,14 @@ public class MenuCombate extends Menu {
         addOption("1", new MenuAction() {
             @Override
             public void execute() throws SQLException {
-                Menu menuMazmorra = new MenuMazmorra("Mazmorra");
+                Menu menuMazmorra = new MenuMazmorra("                                                                      \n" +
+                        " /'\\_/`\\                                                              \n" +
+                        "/\\      \\     __     ____     ___ ___     ___   _ __   _ __    __     \n" +
+                        "\\ \\ \\__\\ \\  /'__`\\  /\\_ ,`\\ /' __` __`\\  / __`\\/\\`'__\\/\\`'__\\/'__`\\   \n" +
+                        " \\ \\ \\_/\\ \\/\\ \\L\\.\\_\\/_/  /_/\\ \\/\\ \\/\\ \\/\\ \\L\\ \\ \\ \\/ \\ \\ \\//\\ \\L\\.\\_ \n" +
+                        "  \\ \\_\\\\ \\_\\ \\__/.\\_\\ /\\____\\ \\_\\ \\_\\ \\_\\ \\____/\\ \\_\\  \\ \\_\\\\ \\__/.\\_\\\n" +
+                        "   \\/_/ \\/_/\\/__/\\/_/ \\/____/\\/_/\\/_/\\/_/\\/___/  \\/_/   \\/_/ \\/__/\\/_/\n" +
+                        "                                                                      ");
                 menuMazmorra.start();
             }
 
@@ -59,7 +66,18 @@ public class MenuCombate extends Menu {
         addOption("S", new MenuAction() {
             @Override
             public void execute() throws SQLException {
-                Menu menuPersonaje = new MenuPersonaje("Atras");
+                Menu menuPersonaje = new MenuPersonaje("\u001B[31m"+"   _____                                                         \n" +
+                        "  /     \\   ____   ____  __ __                                   \n" +
+                        " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +
+                        "/    Y    \\  ___/|   |  \\  |  /                                  \n" +
+                        "\\____|__  /\\___  >___|  /____/                                   \n" +
+                        "        \\/     \\/     \\/                                         \n" +"\u001B[0m"+"\u001B[35m"+
+                        "__________                                             __        \n" +
+                        "\\______   \\ ___________  __________   ____ _____      |__| ____  \n" +
+                        " |     ___// __ \\_  __ \\/  ___/  _ \\ /    \\\\__  \\     |  |/ __ \\ \n" +
+                        " |    |   \\  ___/|  | \\/\\___ (  <_> )   |  \\/ __ \\_   |  \\  ___/ \n" +
+                        " |____|    \\___  >__|  /____  >____/|___|  (____  /\\__|  |\\___  >\n" +
+                        "               \\/           \\/           \\/     \\/\\______|    \\/ "+"\u001B[0m");
                 menuPersonaje.start();
             }
 

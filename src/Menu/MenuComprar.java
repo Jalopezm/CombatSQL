@@ -28,7 +28,16 @@ public class MenuComprar extends Menu{
     protected void onPreOptions() throws SQLException {
         TiendaDao tiendaDao = new TiendaDaoMySql(ClaseSingleton.getConnection());
         List<Tienda> tienda = tiendaDao.showTienda();
-        Menu menuTienda = new MenuTienda("");
+        Menu menuTienda = new MenuTienda("\n" +
+                "__________________ _______  _        ______   _______ \n" +
+                "\\__   __/\\__   __/(  ____ \\( (    /|(  __  \\ (  ___  )\n" +
+                "   ) (      ) (   | (    \\/|  \\  ( || (  \\  )| (   ) |\n" +
+                "   | |      | |   | (__    |   \\ | || |   ) || (___) |\n" +
+                "   | |      | |   |  __)   | (\\ \\) || |   | ||  ___  |\n" +
+                "   | |      | |   | (      | | \\   || |   ) || (   ) |\n" +
+                "   | |   ___) (___| (____/\\| )  \\  || (__/  )| )   ( |\n" +
+                "   )_(   \\_______/(_______/|/    )_)(______/ |/     \\|\n" +
+                "                                                      ");
         if (tienda.size() == 0){
             Input.readString("No hay articulos a la venta, vuelve más tarde. Pulsa intro para continuar.");
         }
