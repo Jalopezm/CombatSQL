@@ -10,6 +10,7 @@ import domain.Objeto;
 import domain.Personaje;
 import domain.Tienda;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.List;
@@ -26,7 +27,10 @@ public class MenuComprar extends Menu{
 
     @Override
     protected void onPreOptions() throws SQLException {
-        TiendaDao tiendaDao = new TiendaDaoMySql(ClaseSingleton.getConnection());
+        Connection con = ClaseSingleton.getConnection();
+        PersonajeDaoMySql personajeDao = new PersonajeDaoMySql(con);
+        Personaje personaje = ClaseSingleton.getPersonaje();
+        TiendaDao tiendaDao = new TiendaDaoMySql(con);
         List<Tienda> tienda = tiendaDao.showTienda();
         Menu menuTienda = new MenuTienda("\n" +
                 "__________________ _______  _        ______   _______ \n" +
@@ -62,6 +66,7 @@ public class MenuComprar extends Menu{
 
             if(tiendaDao.buyObjeto(seleccionado)){
                 Input.readString("Se ha añadido el objeto a tu inventario. Pulsa intro para continuar.");
+                ClaseSingleton.getPersonaje().setMonedas(personajeDao.getGold(personaje.getPersonajeID()));
             }
         }
         menuTienda.start();
