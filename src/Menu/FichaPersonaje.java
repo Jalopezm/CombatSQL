@@ -25,14 +25,17 @@ public class FichaPersonaje {
     int evasion;
     String clase;
     Personaje personaje;
+    int vidaActual;
 
-    public FichaPersonaje(int ataque, int habilidad, int vidaMaxima, int evasion, String clase, Personaje personaje) {
+
+    public FichaPersonaje(int ataque, int habilidad, int vidaMaxima, int evasion, String clase, Personaje personaje,int vidaActual) {
         this.ataque = ataque;
         this.habilidad = habilidad;
         this.vidaMaxima = vidaMaxima;
         this.evasion = evasion;
         this.clase = clase;
         this.personaje = personaje;
+        this.vidaActual = vidaActual;
     }
 
     public static FichaPersonaje getValoresFicha(Personaje personaje) {
@@ -44,6 +47,7 @@ public class FichaPersonaje {
         int ataque = personaje.getClase().getAtaque();
         int habilidad = personaje.getClase().getHabilidad();
         int vidaMaxima = personaje.getClase().getVidaMaxima();
+        int vidaActual = vidaMaxima;
         int evasion = personaje.getClase().getEvasion();
         String clase = personaje.getClase().getNombre();
 
@@ -60,7 +64,7 @@ public class FichaPersonaje {
                 evasion += objeto.getModEvasion() * objeto.getTipo().getModEvasion();
             }
         }
-        return new FichaPersonaje(ataque, habilidad, vidaMaxima, evasion, clase, personaje);
+        return new FichaPersonaje(ataque, habilidad, vidaMaxima, evasion, clase, personaje,vidaActual);
     }
 
 
@@ -290,6 +294,14 @@ public class FichaPersonaje {
 
     public void setPersonaje(Personaje personaje) {
         this.personaje = personaje;
+    }
+
+    public int getVidaActual() {
+        return vidaActual;
+    }
+
+    public void setVidaActual(int vidaActual) {
+        this.vidaActual = vidaActual;
     }
 }
 
