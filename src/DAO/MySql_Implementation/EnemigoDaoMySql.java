@@ -2,6 +2,7 @@ package DAO.MySql_Implementation;
 
 import Conection.ClaseSingleton;
 import DAO.EnemigoDao;
+import DAO.ObjetoDao;
 import DAO.PersonajeDao;
 import domain.Enemigo;
 import domain.Objeto;
@@ -11,6 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 public class EnemigoDaoMySql implements EnemigoDao {
     private Connection con;
@@ -116,5 +121,22 @@ public class EnemigoDaoMySql implements EnemigoDao {
         PersonajeDaoMySql pj = new PersonajeDaoMySql(con);
 
 //        pj.addGold(monedas);
+    }
+
+    @Override
+    public Objeto dropObjeto(Objeto objeto) {
+
+        ObjetoDao objetoDao = new ObjetoDaoMySql(con);
+        List<Objeto> objetosList = objetoDao.getAllObjetos();
+        int totalObjetos = objetosList.size();
+
+        Random rd = new Random();
+
+        int objetoID = rd.nextInt(1,totalObjetos);
+
+        ObjetoDaoMySql dropObjeto = new ObjetoDaoMySql(con);
+
+        return dropObjeto.getObjetoByID(objetoID);
+
     }
 }

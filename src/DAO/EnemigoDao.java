@@ -15,4 +15,5 @@ public interface EnemigoDao {
 
     void dropGold(int monedas);
 
+    Objeto dropObjeto(Objeto objeto);
 }
