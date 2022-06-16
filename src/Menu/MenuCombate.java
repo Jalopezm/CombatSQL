@@ -39,12 +39,15 @@ public class MenuCombate extends Menu {
                 if (personaje.getSaludActual() < personajeDao.getVidaMaxima(personaje)) {
                     int curacion = (int) (personajeDao.getVidaMaxima(personaje) * 0.2);
                     if (personajeDao.takeGold(pocion, personaje)) {
-                        personajeDao.heal(personaje, curacion);
-                        System.out.println("Has restaurado " + curacion + " puntos de vida.");
+                        if (personajeDao.heal(personaje, curacion)){
+                            System.out.println("Has restaurado " + curacion + " puntos de vida.");
+                            ClaseSingleton.getPersonaje().setSaludActual(personajeDao.getHealth(personaje.getPersonajeID()));
+                            ClaseSingleton.getPersonaje().setMonedas(personajeDao.getGold(personaje.getPersonajeID()));
+                        }
                     } else System.out.println("No tienes suficientes monedas para curarte");
                 } else System.out.println("Tu salud ya esta al máximo");
                 Input.readString("Pulsa intro para continuar");
-                Menu menuCombate = new MenuCombate("Atras");
+                Menu menuCombate = new MenuCombate(FichaPersonaje.getValoresFicha(personaje).toString());
                 menuCombate.start();
             }
 
