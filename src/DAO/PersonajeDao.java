@@ -37,5 +37,6 @@ public interface PersonajeDao {
 
     int getVidaMaxima(Personaje personaje);
 
+    boolean setVida(Personaje personaje, int nuevaSalud);
 
 }

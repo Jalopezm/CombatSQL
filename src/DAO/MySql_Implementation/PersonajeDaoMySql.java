@@ -410,16 +410,13 @@ public class PersonajeDaoMySql implements PersonajeDao {
 
     @Override
     public int getVidaMaxima(Personaje personaje) {
-
         Connection con = ClaseSingleton.getConnection();
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
         ObjetoDao objetoDao = new ObjetoDaoMySql(con);
-
         int vidaMaxima = personaje.getClase().getVidaMaxima();
-
         int idPersonaje = personaje.getPersonajeID();
-
         List<Inventario> inventario = inventarioDao.getPersonajeInventario(idPersonaje);
+
         if (inventario != null) {
             for (int i = 0; i < inventario.size(); i++) {
                 int objetoID = inventario.get(i).getObjetoID();
@@ -430,5 +427,29 @@ public class PersonajeDaoMySql implements PersonajeDao {
         return vidaMaxima;
     }
 
+    @Override
+    public boolean setVida(Personaje personaje, int nuevaSalud) {
+        try {
+            //Preparación de la consulta
+            PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET saludActual = ? where personajeID = ?");
+
+            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
+
+
+            //Sustitución de los ?
+            getAllStmnt.setInt(1, nuevaSalud);
+            getAllStmnt.setInt(2, personaje.getPersonajeID());
+
+
+            //Ejecución y verificación del funcionamiento de la query
+            int numberOfInserts = getAllStmnt.executeUpdate();
+
+            if (numberOfInserts == 1) return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
 
 }

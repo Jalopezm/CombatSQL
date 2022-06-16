@@ -207,7 +207,7 @@ public class FichaPersonaje {
     }
 
     private String reformatVidaActual() {
-        String vidaActual = String.valueOf(this.personaje.getSaludActual());
+        String vidaActual = String.valueOf(this.vidaActual);
         if (this.personaje.getSaludActual() < 100) {
             vidaActual = "0" + this.personaje.getSaludActual();
             if (this.personaje.getSaludActual() < 10) {

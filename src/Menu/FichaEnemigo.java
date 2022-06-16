@@ -21,23 +21,22 @@ public class FichaEnemigo {
     int habilidad;
     int vidaMaxima;
     int evasion;
-    String clase;
+    String nombreEnemigo;
     Enemigo enemigo;
     int vidaActual;
 
-    public FichaEnemigo(int ataque, int habilidad, int vidaMaxima, int evasion, String clase,Enemigo enemigo,int vidaActual) {
+    public FichaEnemigo(int ataque, int habilidad, int vidaMaxima, int evasion, String nombreEnemigo,Enemigo enemigo,int vidaActual) {
         this.ataque = ataque;
         this.habilidad = habilidad;
         this.vidaMaxima = vidaMaxima;
         this.evasion = evasion;
-        this.clase = clase;
+        this.nombreEnemigo = nombreEnemigo;
         this.enemigo = enemigo;
         this.vidaActual = vidaActual;
 
     }
 
     public static FichaEnemigo getValoresFicha(Enemigo enemigo) {
-        Connection con = ClaseSingleton.getConnection();
         Personaje personaje = ClaseSingleton.getPersonaje();
 
         int ataque = enemigo.getAtaque() * personaje.getNivel();
@@ -46,29 +45,29 @@ public class FichaEnemigo {
         int evasion = enemigo.getEvasion() * personaje.getNivel();
         int vidaActual = vidaMaxima;
 
-        String clase = enemigo.getNombreEnemigo();
+        String nombreEnemigo = enemigo.getNombreEnemigo();
 
-        return new FichaEnemigo(ataque, habilidad, vidaMaxima, evasion,clase,enemigo,vidaActual);
+        return new FichaEnemigo(ataque, habilidad, vidaMaxima, evasion,nombreEnemigo,enemigo,vidaActual);
     }
 
     public String toString() {
-        if (Objects.equals(this.clase, "Goblin")) {
+        if (Objects.equals(this.nombreEnemigo, "Goblin")) {
             return fichaGoblin();
-        } else if (Objects.equals(this.clase, "Esqueleto")) {
+        } else if (Objects.equals(this.nombreEnemigo, "Esqueleto")) {
             return fichaEsqueleto();
-        } else if (Objects.equals(this.clase, "Sr Mojon")) {
+        } else if (Objects.equals(this.nombreEnemigo, "Sr Mojon")) {
             return fichaSrMojon();
-        }else if (Objects.equals(this.clase, "Orco")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Orco")) {
             return fichaOrco();
-        }else if (Objects.equals(this.clase, "Troll")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Troll")) {
             return fichaTroll();
-        }else if (Objects.equals(this.clase, "Lobo")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Lobo")) {
             return fichaLobo();
-        }else if (Objects.equals(this.clase, "Arpia")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Arpia")) {
             return fichaArpia();
-        }else if (Objects.equals(this.clase, "Hipogrifo")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Hipogrifo")) {
             return fichaHipogrifo();
-        }else if (Objects.equals(this.clase, "Liche")) {
+        }else if (Objects.equals(this.nombreEnemigo, "Liche")) {
             return fichaLiche();
         } else {
             return "";
@@ -83,7 +82,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -100,7 +99,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -119,7 +118,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -137,7 +136,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -155,7 +154,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -173,7 +172,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -191,7 +190,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -209,7 +208,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -227,7 +226,7 @@ public class FichaEnemigo {
         String vidaActual = reformatVidaActual();
 
         String ficha = "+--------------------------------------+";
-        ficha += "|" +this.clase+"|";
+        ficha += "|" +this.nombreEnemigo+"|";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -282,11 +281,11 @@ public class FichaEnemigo {
     }
 
     private String reformatVidaActual() {
-        String vidaActual = String.valueOf(enemigo.getSalud());
-        if (enemigo.getSalud() < 100) {
-            vidaActual = "0" + enemigo.getSalud();
-            if (enemigo.getSalud() < 10) {
-                vidaActual = "00" + enemigo.getSalud();
+        String vidaActual = String.valueOf(this.vidaActual);
+        if (this.vidaActual < 100) {
+            vidaActual = "0" + this.vidaActual;
+            if (this.vidaActual < 10) {
+                vidaActual = "00" + this.vidaActual;
             }
         }
         return vidaActual;
@@ -325,11 +324,11 @@ public class FichaEnemigo {
     }
 
     public String getClase() {
-        return clase;
+        return nombreEnemigo;
     }
 
-    public void setClase(String clase) {
-        this.clase = clase;
+    public void setClase(String nombreEnemigo) {
+        this.nombreEnemigo = nombreEnemigo;
     }
 
     public Enemigo getEnemigo() {

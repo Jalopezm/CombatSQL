@@ -31,21 +31,24 @@ public class MenuMazmorra extends Menu {
         Enemigo enemigo = enemigoDao.getEnemigoByID(enemigoID);
         MenuCombate menuCombate = new MenuCombate(FichaPersonaje.getValoresFicha(personaje).toString());
         FichaPersonaje fichaPersonaje = FichaPersonaje.getValoresFicha(personaje);
+        FichaEnemigo fichaEnemigo = FichaEnemigo.getValoresFicha(enemigo);
+        PersonajeDao personajeDao = new PersonajeDaoMySql(con);
 
         System.out.println("Vas a enfrentarte a " + enemigo.getNombreEnemigo() + "!");
         Input.readString("Pulsa intro para iniciar el combate");
 
         while (true) {
             sleep(1000);
-            playerAtack(fichaPersonaje, FichaEnemigo.getValoresFicha(enemigo));
+            playerAtack(fichaPersonaje, fichaEnemigo);
             if (enemigo.getSalud() <= 0) {
                 playerwin();
                 break;
             }
             sleep(1000);
-            enemyAtack(FichaEnemigo.getValoresFicha(enemigo), fichaPersonaje);
+            enemyAtack(fichaEnemigo, fichaPersonaje);
             if (ClaseSingleton.getPersonaje().getSaludActual() <= 0) {
                 System.out.println("Has perdido!");
+                personajeDao.setVida(personaje, 0);
                 break;
             }
             sleep(1000);
@@ -71,9 +74,8 @@ public class MenuMazmorra extends Menu {
     }
 
     private void enemyAtack(FichaEnemigo fichaEnemigo, FichaPersonaje fichaPersonaje) {
-        //con la formula calcular cuanta salud le quita personaje a enemigo y quitarsela
         Random random = new Random();
-        int ataque = random.nextInt(0, 300);
+        int ataque = random.nextInt(0, 100);
         int golpe = 0;
         if (ataque <= 15) {
             golpe = fichaEnemigo.getAtaque() * 0;
@@ -89,15 +91,14 @@ public class MenuMazmorra extends Menu {
             System.out.println("Golpe Critico");
         }
 
-        fichaPersonaje.setVidaActual(fichaPersonaje.getVidaActual()- golpe);
+        fichaPersonaje.setVidaActual(fichaPersonaje.getVidaActual() - golpe);
 
-        System.out.println(fichaPersonaje.toString());
+        System.out.println(fichaPersonaje);
     }
 
     private void playerAtack(FichaPersonaje fichaPersonaje, FichaEnemigo fichaEnemigo) {
-        //con la formula calcular cuanta salud le quita enemigo a personaje y quitarsela
         Random random = new Random();
-        int ataque = random.nextInt(0, 300);
+        int ataque = random.nextInt(0, 100);
         int golpe = 0;
         if (ataque <= 15) {
             golpe = fichaPersonaje.getAtaque() * 0;
@@ -108,8 +109,8 @@ public class MenuMazmorra extends Menu {
         } else if (ataque > 76) {
             golpe = (int) (fichaPersonaje.getAtaque() * 1.25);
         }
-       fichaEnemigo.setVidaActual(fichaEnemigo.getVidaActual()-golpe);
-        System.out.println(fichaEnemigo.toString());
+        fichaEnemigo.setVidaActual(fichaEnemigo.getVidaActual() - golpe);
+        System.out.println(fichaEnemigo);
     }
 
     @Override
