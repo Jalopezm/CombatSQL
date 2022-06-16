@@ -36,16 +36,18 @@ public class MenuCombate extends Menu {
                 PersonajeDaoMySql personajeDao = new PersonajeDaoMySql(con);
                 Personaje personaje = ClaseSingleton.getPersonaje();
                 Tienda pocion = new Tienda(0, 0, 50);
-                if (personajeDao.takeGold(pocion, personaje)) {
+                if (personaje.getSaludActual() < personajeDao.getVidaMaxima(personaje)) {
                     int curacion = (int) (personajeDao.getVidaMaxima(personaje) * 0.2);
-                    if (personajeDao.heal(personaje, curacion)) {
+                    if (personajeDao.takeGold(pocion, personaje)) {
+                        personajeDao.heal(personaje, curacion);
                         System.out.println("Has restaurado " + curacion + " puntos de vida.");
-                    }
-                } else System.out.println("No tienes suficientes monedas para curarte");
+                    } else System.out.println("No tienes suficientes monedas para curarte");
+                } else System.out.println("Tu salud ya esta al máximo");
                 Input.readString("Pulsa intro para continuar");
                 Menu menuCombate = new MenuCombate("Atras");
                 menuCombate.start();
             }
+
             @Override
             public String getOptionName() {
                 return ") Curar (restaura un 20% de tu vida máxima por 50 monedas de oro)";
