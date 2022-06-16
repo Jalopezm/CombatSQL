@@ -41,7 +41,6 @@ public class FichaObjeto {
 
     @Override
     public String toString() {
-        System.out.println(this.calidad);
         if (Objects.equals(this.calidad, "Normal")) {
             return fichaNormal();
         } else if (Objects.equals(this.calidad, "Epico/a")) {

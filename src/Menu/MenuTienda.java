@@ -33,6 +33,19 @@ public class MenuTienda extends Menu{
                 return ") Vender";
             }
         });
+        addOption("S", new MenuAction() {
+            @Override
+            public void execute() throws SQLException {
+                Menu menuJuego = new MenuJuego("Atras");
+                menuJuego.start();
+            }
+
+            @Override
+            public String getOptionName() {
+                return ") Atras";
+            }
+        });
+
 
     }
 

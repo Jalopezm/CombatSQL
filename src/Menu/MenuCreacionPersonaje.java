@@ -47,7 +47,7 @@ public class MenuCreacionPersonaje extends Menu {
     }
 
     @Override
-    protected void onPreOptions() {
+    protected void onPreOptions() throws SQLException {
         Connection con = ClaseSingleton.getConnection();
         String nombrePersonaje = Input.readString("Introduce el nombre de tu personaje");
         while (nombrePersonaje.length() > 12 || nombrePersonaje.length() < 1) {
@@ -94,6 +94,20 @@ public class MenuCreacionPersonaje extends Menu {
                 personajeDao.insertNuevoPersonaje(personaje);
                 System.out.println("Nuevo Usuario Creado: " + nombrePersonaje);
             }
-
+            Input.readString("Pulsa intro para continuar ");
+            Menu menuPersonaje = new MenuPersonaje("\u001B[31m" + "   _____                                                         \n" +
+                    "  /     \\   ____   ____  __ __                                   \n" +
+                    " /  \\ /  \\_/ __ \\ /    \\|  |  \\                                  \n" +
+                    "/    Y    \\  ___/|   |  \\  |  /                                  \n" +
+                    "\\____|__  /\\___  >___|  /____/                                   \n" +
+                    "        \\/     \\/     \\/                                         \n" + "\u001B[0m" + "\u001B[35m" +
+                    "__________                                             __        \n" +
+                    "\\______   \\ ___________  __________   ____ _____      |__| ____  \n" +
+                    " |     ___// __ \\_  __ \\/  ___/  _ \\ /    \\\\__  \\     |  |/ __ \\ \n" +
+                    " |    |   \\  ___/|  | \\/\\___ (  <_> )   |  \\/ __ \\_   |  \\  ___/ \n" +
+                    " |____|    \\___  >__|  /____  >____/|___|  (____  /\\__|  |\\___  >\n" +
+                    "               \\/           \\/           \\/     \\/\\______|    \\/ " + "\u001B[0m");
+            menuPersonaje.start();
         }
+
     }

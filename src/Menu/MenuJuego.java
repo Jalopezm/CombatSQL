@@ -38,6 +38,18 @@ public class MenuJuego extends Menu{
                 return ") Combate";
             }
         });
+        addOption("S", new MenuAction() {
+            @Override
+            public void execute() throws SQLException {
+                Menu menuPersonaje = new MenuPersonaje("Atras");
+                menuPersonaje.start();
+            }
+
+            @Override
+            public String getOptionName() {
+                return ") Atras";
+            }
+        });
     }
 
     @Override

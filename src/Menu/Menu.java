@@ -1,10 +1,7 @@
 package Menu;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Menu {
 
@@ -62,7 +59,7 @@ public abstract class Menu {
             onPreOptions();
             printOptions();
 
-            String input = Input.readString("==> Opción");
+            String input = Input.readString("==> Opción").toUpperCase(Locale.ROOT);
             if (actions.containsKey(input)) {
                 actions.get(input).execute();
             } else {

@@ -243,7 +243,10 @@ public class PersonajeDaoMySql implements PersonajeDao {
             int salud = personajeDao.getHealth(personaje.getPersonajeID());
             int curarPuntos = curar;
             int total = salud + curarPuntos;
+            int vidaMaxima = getVidaMaxima(personaje);
 
+            //Si la vida despues de curarse es mayor que la máxima se indica la salud igual a la maxima.
+            if (total > vidaMaxima) total = vidaMaxima;
 
             //Sustitución de los ?
             getAllStmnt.setInt(1, total);
