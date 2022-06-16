@@ -349,21 +349,15 @@ public class PersonajeDaoMySql implements PersonajeDao {
             //Preparación de la consulta
             PreparedStatement getAllStmnt = con.prepareStatement("UPDATE PERSONAJE SET nivel = ? where personajeID = ?");
 
-            PersonajeDao personajeDao = new PersonajeDaoMySql(con);
-
             int nivel = personaje.getNivel();
             nivel ++;
-
 
             //Sustitución de los ?
             getAllStmnt.setInt(1, nivel);
             getAllStmnt.setInt(2, personaje.getPersonajeID());
 
-
             //Ejecución y verificación del funcionamiento de la query
             int numberOfInserts = getAllStmnt.executeUpdate();
-
-            // TODO revisar
 
             PreparedStatement setVidaMaximaStmnt = con.prepareStatement("UPDATE PERSONAJE SET saludActual = ? where personajeID = ?");
 
@@ -372,7 +366,9 @@ public class PersonajeDaoMySql implements PersonajeDao {
             setVidaMaximaStmnt.setInt(1, saludMax);
             setVidaMaximaStmnt.setInt(2, personaje.getPersonajeID());
 
-            if (numberOfInserts == 1) return true;
+            numberOfInserts+= setVidaMaximaStmnt.executeUpdate();
+
+            if (numberOfInserts == 2) return true;
 
         } catch (SQLException e) {
             System.err.println(e);
