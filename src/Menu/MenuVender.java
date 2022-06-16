@@ -36,7 +36,7 @@ public class MenuVender extends Menu {
             for (int i = 0; i < inventario.size() ; i++) {
                 final int idx = i;
                 int  indiceObjeto = inventario.get(idx).getObjetoID();
-                System.out.println(FichaObjeto.getValoresFicha(indiceObjeto).toString());
+                System.out.println(FichaObjeto.getValoresFicha(indiceObjeto));
             }
             String indice = Input.readString("Introduce un objeto");
             if (Objects.equals(indice, "")){

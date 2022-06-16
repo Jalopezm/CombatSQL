@@ -38,6 +38,18 @@ public class MenuJuego extends Menu{
                 return ") Combate";
             }
         });
+        addOption("3", new MenuAction() {
+            @Override
+            public void execute() throws SQLException {
+                Menu menuInventario = new MenuInventario("Inventario");
+                menuInventario.start();
+            }
+
+            @Override
+            public String getOptionName() {
+                return ") Inventario";
+            }
+        });
         addOption("S", new MenuAction() {
             @Override
             public void execute() throws SQLException {
