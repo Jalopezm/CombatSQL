@@ -14,4 +14,5 @@ public interface EnemigoDao {
     void dropExperience();
 
     void dropGold(int monedas);
+
 }
