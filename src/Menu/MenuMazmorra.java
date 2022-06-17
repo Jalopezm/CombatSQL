@@ -37,8 +37,6 @@ public class MenuMazmorra extends Menu {
         System.out.println("Vas a enfrentarte a " + enemigo.getNombreEnemigo() + "!");
         Input.readString("Pulsa intro para iniciar el combate");
 
-
-
         while (true) {
             sleep(1000);
             int saludPersonaje = fichaPersonaje.getVidaActual();
@@ -54,13 +52,14 @@ public class MenuMazmorra extends Menu {
             if (saludPersonaje <= 0) {
                 System.out.println("Has perdido!");
                 personajeDao.setVida(personaje, 0);
+                ClaseSingleton.getPersonaje().setSaludActual(0);
                 sleep(5000);
                 break;
             }
             enemyAtack(fichaEnemigo, fichaPersonaje);
             sleep(1000);
         }
-        fichaPersonaje = FichaPersonaje.getValoresFicha(personaje);
+        fichaPersonaje = FichaPersonaje.getValoresFicha(ClaseSingleton.getPersonaje());
         MenuCombate menuCombate = new MenuCombate(fichaPersonaje.toString());
         menuCombate.start();
     }
@@ -70,16 +69,21 @@ public class MenuMazmorra extends Menu {
         Connection con = ClaseSingleton.getConnection();
         EnemigoDao enemigoDao = new EnemigoDaoMySql(con);
         InventarioDao inventarioDao = new InventarioDaoMySql(con);
-
+        PersonajeDao personajeDao = new PersonajeDaoMySql(con);
         int gold = (int) ((Math.random() + 1) * 100);
-        enemigoDao.dropGold(gold);
-        System.out.println("Has recibido " + gold + " monedas!");
-        enemigoDao.dropExperience();
-        System.out.println("Has subido un nivel, ahora eres nivel " + personaje.getNivel() + "!");
+
         Objeto objeto = enemigoDao.dropObjeto();
         inventarioDao.addObjecto(objeto, personaje);
         System.out.println("Has conseguido el siguiente objeto:");
         System.out.println(FichaObjeto.getValoresFicha(objeto.getObjetoID()));
+
+        enemigoDao.dropGold(gold);
+        System.out.println("Has recibido " + gold + " monedas!");
+
+        enemigoDao.dropExperience();
+        System.out.println("Has subido un nivel, ahora eres nivel " + personaje.getNivel() + "!");
+        personaje.setNivel(ClaseSingleton.getPersonaje().getNivel()+1);
+        personaje.setSaludActual(personajeDao.getHealth(personaje.getPersonajeID()));
         sleep(5000);
     }
 
@@ -100,9 +104,7 @@ public class MenuMazmorra extends Menu {
             golpe = (int) (fichaEnemigo.getAtaque() * 1.25);
             System.out.println("Golpe Critico");
         }
-
         fichaPersonaje.setVidaActual(fichaPersonaje.getVidaActual() - golpe);
-
         System.out.println(fichaPersonaje);
     }
 
