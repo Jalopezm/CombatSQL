@@ -29,7 +29,7 @@ public class MenuMazmorra extends Menu {
         Personaje personaje = ClaseSingleton.getPersonaje();
         EnemigoDao enemigoDao = new EnemigoDaoMySql(con);
         Enemigo enemigo = enemigoDao.getEnemigoByID(enemigoID);
-        MenuCombate menuCombate = new MenuCombate(FichaPersonaje.getValoresFicha(personaje).toString());
+
         FichaPersonaje fichaPersonaje = FichaPersonaje.getValoresFicha(personaje);
         FichaEnemigo fichaEnemigo = FichaEnemigo.getValoresFicha(enemigo);
         PersonajeDao personajeDao = new PersonajeDaoMySql(con);
@@ -41,7 +41,7 @@ public class MenuMazmorra extends Menu {
 
         while (true) {
             sleep(1000);
-            int saludPersonaje = ClaseSingleton.getPersonaje().getSaludActual();
+            int saludPersonaje = fichaPersonaje.getVidaActual();
             int saludEnemigo = fichaEnemigo.getVidaActual();
 
             if (saludEnemigo <= 0) {
@@ -60,6 +60,8 @@ public class MenuMazmorra extends Menu {
             enemyAtack(fichaEnemigo, fichaPersonaje);
             sleep(1000);
         }
+        fichaPersonaje = FichaPersonaje.getValoresFicha(personaje);
+        MenuCombate menuCombate = new MenuCombate(fichaPersonaje.toString());
         menuCombate.start();
     }
 

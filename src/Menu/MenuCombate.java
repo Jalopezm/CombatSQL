@@ -20,15 +20,22 @@ public class MenuCombate extends Menu {
         addOption("1", new MenuAction() {
             @Override
             public void execute() throws SQLException {
-                Menu menuMazmorra = new MenuMazmorra("                                                                      \n" +
-                        " /'\\_/`\\                                                              \n" +
-                        "/\\      \\     __     ____     ___ ___     ___   _ __   _ __    __     \n" +
-                        "\\ \\ \\__\\ \\  /'__`\\  /\\_ ,`\\ /' __` __`\\  / __`\\/\\`'__\\/\\`'__\\/'__`\\   \n" +
-                        " \\ \\ \\_/\\ \\/\\ \\L\\.\\_\\/_/  /_/\\ \\/\\ \\/\\ \\/\\ \\L\\ \\ \\ \\/ \\ \\ \\//\\ \\L\\.\\_ \n" +
-                        "  \\ \\_\\\\ \\_\\ \\__/.\\_\\ /\\____\\ \\_\\ \\_\\ \\_\\ \\____/\\ \\_\\  \\ \\_\\\\ \\__/.\\_\\\n" +
-                        "   \\/_/ \\/_/\\/__/\\/_/ \\/____/\\/_/\\/_/\\/_/\\/___/  \\/_/   \\/_/ \\/__/\\/_/\n" +
-                        "                                                                      ");
-                menuMazmorra.start();
+                if (ClaseSingleton.getPersonaje().getSaludActual() > 0) {
+                    Menu menuMazmorra = new MenuMazmorra("                                                                      \n" +
+                            " /'\\_/`\\                                                              \n" +
+                            "/\\      \\     __     ____     ___ ___     ___   _ __   _ __    __     \n" +
+                            "\\ \\ \\__\\ \\  /'__`\\  /\\_ ,`\\ /' __` __`\\  / __`\\/\\`'__\\/\\`'__\\/'__`\\   \n" +
+                            " \\ \\ \\_/\\ \\/\\ \\L\\.\\_\\/_/  /_/\\ \\/\\ \\/\\ \\/\\ \\L\\ \\ \\ \\/ \\ \\ \\//\\ \\L\\.\\_ \n" +
+                            "  \\ \\_\\\\ \\_\\ \\__/.\\_\\ /\\____\\ \\_\\ \\_\\ \\_\\ \\____/\\ \\_\\  \\ \\_\\\\ \\__/.\\_\\\n" +
+                            "   \\/_/ \\/_/\\/__/\\/_/ \\/____/\\/_/\\/_/\\/_/\\/___/  \\/_/   \\/_/ \\/__/\\/_/\n" +
+                            "                                                                      ");
+                    menuMazmorra.start();
+                } else {
+                    System.out.println("No puedes combatir, estás herido de gravedad");
+                    System.out.println("Cúrate antes de combatir, melón");
+                    Input.readString("pulsa intro para continuar");
+                }
+
             }
 
             @Override
