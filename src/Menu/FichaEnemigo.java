@@ -81,8 +81,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -98,8 +98,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -117,8 +117,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -135,8 +135,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -153,8 +153,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -171,8 +171,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -189,8 +189,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -207,8 +207,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
@@ -225,8 +225,8 @@ public class FichaEnemigo {
         String evasion = reformatEvasion();
         String vidaActual = reformatVidaActual();
 
-        String ficha = "+--------------------------------------+";
-        ficha += "|" +this.nombreEnemigo+"|";
+        String ficha = "+--------------------------------------+"+"\n";
+        ficha += "|" +this.nombreEnemigo+"|"+"\n";
         ficha += "\u001B[32m" + "|--------------" + "Estadisticas" + "------------|" + "\n" + "\u001B[0m";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "SaludActual: " + vidaActual + "/" + vidaMaxima + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
         ficha += "\u001B[32m" + "|" + "\u001B[0m" + "Ataque: " + ataque + "\u001B[32m" + "|" + "\u001B[0m" + "\n";
