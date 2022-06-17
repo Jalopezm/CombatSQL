@@ -37,20 +37,27 @@ public class MenuMazmorra extends Menu {
         System.out.println("Vas a enfrentarte a " + enemigo.getNombreEnemigo() + "!");
         Input.readString("Pulsa intro para iniciar el combate");
 
+
+
         while (true) {
             sleep(1000);
-            playerAtack(fichaPersonaje, fichaEnemigo);
-            if (enemigo.getSalud() <= 0) {
+            int saludPersonaje = ClaseSingleton.getPersonaje().getSaludActual();
+            int saludEnemigo = fichaEnemigo.getVidaActual();
+
+            if (saludEnemigo <= 0) {
                 playerwin();
                 break;
             }
+            playerAtack(fichaPersonaje, fichaEnemigo);
             sleep(1000);
-            enemyAtack(fichaEnemigo, fichaPersonaje);
-            if (ClaseSingleton.getPersonaje().getSaludActual() <= 0) {
+
+            if (saludPersonaje <= 0) {
                 System.out.println("Has perdido!");
                 personajeDao.setVida(personaje, 0);
+                sleep(5000);
                 break;
             }
+            enemyAtack(fichaEnemigo, fichaPersonaje);
             sleep(1000);
         }
         menuCombate.start();
@@ -71,6 +78,7 @@ public class MenuMazmorra extends Menu {
         inventarioDao.addObjecto(objeto, personaje);
         System.out.println("Has conseguido el siguiente objeto:");
         System.out.println(FichaObjeto.getValoresFicha(objeto.getObjetoID()));
+        sleep(5000);
     }
 
     private void enemyAtack(FichaEnemigo fichaEnemigo, FichaPersonaje fichaPersonaje) {
